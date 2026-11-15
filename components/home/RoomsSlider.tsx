@@ -5,16 +5,12 @@ import * as m from "framer-motion/m";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useMemo, useState, type KeyboardEvent } from "react";
 import { rooms, type TripType } from "@/content/rooms";
-import { href } from "@/content/routes";
 import type { Locale } from "@/content/site";
 import type { Dictionary } from "@/content/i18n";
-import { Frame } from "@/components/ui/Frame";
-import { ButtonLink, PhotoMissing, Tbc } from "@/components/ui/primitives";
-import { RoomFacts } from "@/components/rooms/RoomFacts";
+import { RoomSlide, slideGridClass } from "@/components/rooms/RoomSlide";
 import { cn } from "@/lib/cn";
 
 const trips: TripType[] = ["solo", "duo", "group"];
-const two = (n: number) => String(n).padStart(2, "0");
 const loadFeatures = () => import("./motion-features").then((mod) => mod.default);
 
 /**
@@ -70,7 +66,6 @@ export function RoomsSlider({
   };
 
   const offset = reduced ? 0 : 36 * direction;
-  const photo = room.photos[0];
 
   return (
     <LazyMotion features={loadFeatures} strict>
@@ -123,48 +118,9 @@ export function RoomsSlider({
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -offset }}
               transition={{ duration: reduced ? 0.2 : 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="grid items-end gap-x-[clamp(2rem,5vw,5rem)] gap-y-8 lg:grid-cols-[minmax(0,22.5rem)_minmax(0,1fr)]"
+              className={slideGridClass}
             >
-              <div className="mx-auto w-full max-w-[22.5rem] lg:mx-0">
-                {photo ? (
-                  <Frame
-                    photo={photo}
-                    lang={lang}
-                    caption={common.photoTbc}
-                    number={two(position + 1)}
-                    className="text-inchiostro"
-                  />
-                ) : (
-                  <div className="border border-sabbia bg-carta p-2.5">
-                    <PhotoMissing what={room.missingPhoto[lang]} label={common.photoMissing} />
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <p className="font-serif text-[2.75rem] leading-none text-ocra" aria-hidden="true">
-                  {two(position + 1)}
-                  <span className="ml-2 text-[1.1rem] text-sabbia">/ {two(list.length)}</span>
-                </p>
-                <h3 className="titolo-scheda mt-3">{room.name[lang]}</h3>
-                <p className="mt-4 max-w-[46ch] text-sabbia">{room.blurb[lang]}</p>
-                {!room.verified ? (
-                  <p className="mt-3 text-[0.9rem]">
-                    <Tbc tbc={common.tbcWithOwner} tone="dark" />
-                  </p>
-                ) : null}
-
-                <RoomFacts room={room} lang={lang} common={common} tone="dark" className="mt-7" />
-
-                <div className="mt-7 flex flex-wrap items-center gap-3.5">
-                  <ButtonLink href={`${href("book", lang)}?camera=${room.slug}`} variant="onDark">
-                    {common.requestRoom}
-                  </ButtonLink>
-                  <ButtonLink href={href("rooms", lang, room.slug)} variant="outlineOnDark">
-                    {common.allRooms}
-                  </ButtonLink>
-                </div>
-              </div>
+              <RoomSlide room={room} lang={lang} common={common} position={position} total={list.length} />
             </m.div>
           </AnimatePresence>
         </div>

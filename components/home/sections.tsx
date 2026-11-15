@@ -11,9 +11,11 @@ import {
   Tbc,
   TwoLineTitle,
 } from "@/components/ui/primitives";
-import { RequestForm } from "@/components/book/RequestForm";
+import { rooms } from "@/content/rooms";
+import { RoomSlide, slideGridClass } from "@/components/rooms/RoomSlide";
+import { cn } from "@/lib/cn";
+import { FormIsland, RoomsIsland } from "./Islands";
 import { MosaicMap } from "./MosaicMap";
-import { RoomsSlider } from "./RoomsSlider";
 
 type Props = { lang: Locale; dict: Dictionary };
 
@@ -71,11 +73,12 @@ export function Manifesto({ lang, dict }: Props) {
 /* ---------- Le sistemazioni ---------- */
 export function RoomsSection({ lang, dict }: Props) {
   const t = dict.rooms;
+  const duoRooms = rooms.filter((room) => room.trips.includes("duo"));
   return (
     <section
       id="sistemazioni"
       aria-labelledby="sistemazioni-titolo"
-      className="su-scuro sezione bg-verde text-crema"
+      className="su-scuro sezione bg-verde text-crema [content-visibility:visible]"
     >
       <div className="contenitore">
         <div className="grid items-end gap-x-16 gap-y-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
@@ -90,7 +93,48 @@ export function RoomsSection({ lang, dict }: Props) {
           </Reveal>
         </div>
         <div className="mt-12 lg:mt-16">
-          <RoomsSlider lang={lang} t={t} common={dict.common} />
+          {/* Lo slider si attiva quando si avvicina allo schermo. Prima, e senza
+              JavaScript, si vede questa versione statica: la prima sistemazione
+              del filtro "In due". */}
+          <RoomsIsland
+            lang={lang}
+            t={t}
+            common={dict.common}
+            fallback={
+              <>
+                <div
+                  aria-hidden="true"
+                  className="inline-flex flex-wrap gap-1.5 rounded-[1.75rem] border border-crema/30 p-1.5"
+                >
+                  {(["solo", "duo", "group"] as const).map((key) => (
+                    <span
+                      key={key}
+                      className={cn(
+                        "grid min-h-11 place-items-center rounded-full px-5 text-[0.78rem] font-semibold tracking-[0.12em] uppercase sm:px-6",
+                        key === "duo" ? "bg-ocra text-inchiostro" : "text-crema",
+                      )}
+                    >
+                      {t.trips[key]}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-10 lg:mt-14">
+                  <div className="min-h-[34rem] lg:min-h-[36rem]">
+                    <div className={slideGridClass}>
+                      <RoomSlide
+                        room={duoRooms[0]}
+                        lang={lang}
+                        common={dict.common}
+                        position={0}
+                        total={duoRooms.length}
+                      />
+                    </div>
+                  </div>
+                  <div aria-hidden="true" className="mt-8 h-[4.5rem] border-t border-crema/25" />
+                </div>
+              </>
+            }
+          />
         </div>
       </div>
     </section>
@@ -168,7 +212,7 @@ export function DirectSection({ lang, dict }: Props) {
   const t = dict.direct;
   const benefits = directBenefits[lang];
   return (
-    <section aria-labelledby="diretto-titolo" className="su-scuro sezione bg-mattone text-carta">
+    <section aria-labelledby="diretto-titolo" className="su-scuro sezione bg-mattone text-carta [content-visibility:visible]">
       <div className="contenitore">
         <div className="grid items-end gap-x-16 gap-y-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
           <Reveal>
@@ -386,7 +430,22 @@ export function BookSection({ lang, dict }: Props) {
           </Reveal>
         </div>
         <Reveal delay={100}>
-          <RequestForm lang={lang} t={dict.form} common={dict.common} />
+          {/* Il modulo si attiva quando si avvicina allo schermo. Prima, e senza
+              JavaScript, c'è un riquadro con il collegamento alla pagina Prenota. */}
+          <FormIsland
+            lang={lang}
+            t={dict.form}
+            common={dict.common}
+            fallback={
+              <div className="min-h-[40rem] border border-sabbia bg-carta p-[clamp(1.5rem,4vw,3rem)]">
+                <h3 className="font-serif text-[1.9rem] leading-tight">{dict.form.title}</h3>
+                <p className="mt-2 text-[0.95rem] text-legno">{dict.form.note}</p>
+                <ButtonLink href={href("book", lang)} className="mt-8">
+                  {dict.common.checkAvailability}
+                </ButtonLink>
+              </div>
+            }
+          />
         </Reveal>
       </div>
     </section>

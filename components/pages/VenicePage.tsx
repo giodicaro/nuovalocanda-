@@ -106,7 +106,7 @@ export function VenicePage({ lang }: { lang: Locale }) {
       <Suspense>
       <section aria-labelledby="consigli" className="su-scuro relative bg-verde text-crema">
         <Scallop color="var(--color-crema)" />
-        <div className="contenitore sezione">
+        <div className="contenitore sezione [content-visibility:visible]">
           <Reveal>
             <Label tone="dark">{t.label}</Label>
             <h2 id="consigli" className="titolo-sezione mt-5">

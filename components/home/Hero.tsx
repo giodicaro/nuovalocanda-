@@ -39,10 +39,12 @@ export function Hero({ lang, dict }: { lang: Locale; dict: Dictionary }) {
               </span>
             </span>
           </h1>
-          <p className="entra mt-6 max-w-[42ch] text-[1.08rem] text-legno" style={delay(750)}>
+          {/* Testo e pulsanti sono visibili da subito: l'invito a prenotare
+              non aspetta le animazioni. */}
+          <p className="mt-6 max-w-[42ch] text-[1.08rem] text-legno">
             {t.text}
           </p>
-          <div className="entra mt-7 flex flex-wrap gap-3" style={delay(900)}>
+          <div className="mt-7 flex flex-wrap gap-3">
             <ButtonLink href={href("book", lang)}>{dict.common.checkAvailability}</ButtonLink>
             <ButtonLink href={href("home", lang, "sistemazioni")} variant="outline">
               {t.ctaSecondary}

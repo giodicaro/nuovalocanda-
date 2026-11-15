@@ -54,6 +54,7 @@ export function Frame({
           sizes={`(max-width: ${width + 64}px) calc(100vw - 4rem), ${width}px`}
           loading={eager ? "eager" : "lazy"}
           fetchPriority={eager ? "high" : "auto"}
+          decoding={eager ? "sync" : "async"}
           className="h-auto w-full"
         />
       </div>
