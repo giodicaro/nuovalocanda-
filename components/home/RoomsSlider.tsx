@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, LazyMotion, domAnimation, useReducedMotion } from "framer-motion";
+import { AnimatePresence, LazyMotion, useReducedMotion } from "framer-motion";
 import * as m from "framer-motion/m";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useMemo, useState, type KeyboardEvent } from "react";
@@ -15,6 +15,7 @@ import { cn } from "@/lib/cn";
 
 const trips: TripType[] = ["solo", "duo", "group"];
 const two = (n: number) => String(n).padStart(2, "0");
+const loadFeatures = () => import("./motion-features").then((mod) => mod.default);
 
 /**
  * Slider delle sistemazioni con filtro per tipo di viaggio.
@@ -72,7 +73,7 @@ export function RoomsSlider({
   const photo = room.photos[0];
 
   return (
-    <LazyMotion features={domAnimation} strict>
+    <LazyMotion features={loadFeatures} strict>
       {/* Filtro per tipo di viaggio */}
       <div
         role="radiogroup"

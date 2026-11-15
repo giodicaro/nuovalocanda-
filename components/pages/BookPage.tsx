@@ -25,7 +25,7 @@ export function BookPage({ lang }: { lang: Locale }) {
 
       <section className="contenitore grid gap-x-[clamp(2rem,5vw,5rem)] gap-y-12 pb-[clamp(4rem,9vw,8rem)] lg:grid-cols-[minmax(0,1.25fr)_minmax(0,0.75fr)]">
         <div className="entra" style={{ ["--ritardo" as string]: "700ms" }}>
-          <RequestForm lang={lang} t={dict.form} common={dict.common} />
+          <RequestForm lang={lang} t={dict.form} common={dict.common} heading="h2" />
         </div>
 
         <aside aria-labelledby="orari" className="lg:pt-4">

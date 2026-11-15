@@ -1,7 +1,7 @@
 # Direzione visiva — Nuova Locanda Belvedere
 
-Stato: **in attesa di approvazione** (Fase 1, 15/11/2026).
-Tavola di stile da aprire nel browser: `docs/tavola-di-stile.html`.
+Stato: **approvata il 15/11/2026** con due modifiche chieste dal committente: palette un po' più accesa e hero animata in modo simpatico ma misurato. Questo documento è aggiornato alle scelte finali.
+La tavola di stile `docs/tavola-di-stile.html` mostra la prima proposta, prima delle due modifiche: vale come documento storico.
 
 ## 1. Concept
 
@@ -31,22 +31,23 @@ Un difetto del riferimento da non ripetere: se lo scroll non attiva le animazion
 
 ## 3. Palette definitiva
 
-Colori verificati campionando le foto 03, 04, 06, 07, 09, 12 e 13.
+Colori derivati dalle foto 03, 04, 06, 07, 09, 12 e 13, poi resi un po' più accesi su richiesta del committente.
 
 | Token | Colore | Uso | Contrasto |
 |---|---|---|---|
-| `--crema` | `#F6EFE2` | Sfondo principale (la tenda) | — |
-| `--carta` | `#FBF8F2` | Card e sezioni chiare | — |
-| `--sabbia` | `#E6DAC6` | Linee sottili e bordi | solo decorativo |
-| `--terracotta` | `#C4623A` | Accento principale: titoli grandi, superfici, grafica | 3,56 su crema: **solo testo grande (≥ 24 px) e grafica** |
-| `--mattone` | `#9C4526` | Terracotta scura: link, testo piccolo d'accento, sfondo dei pulsanti | 5,58 su crema, AA |
-| `--ocra` | `#D9A441` | Accento raro (le pareti della hall): dettagli grafici, mai testo su chiaro | 4,31 su verde: solo testo grande |
-| `--verde-persiana` | `#2F4A3C` | Footer, superfici scure, link attivi | crema su verde 8,48, AAA |
-| `--legno` | `#6B4A32` | Testo secondario, linee | 6,93 su crema, AA |
-| `--inchiostro` | `#221E1A` | Testo corrente | 14,47 su crema, AAA |
+| `--color-crema` | `#F8EEDB` | Sfondo principale (la tenda) | — |
+| `--color-carta` | `#FEFAF2` | Card, cornici e sezioni chiare | — |
+| `--color-sabbia` | `#EBDDC2` | Linee sottili e bordi | solo decorativo |
+| `--color-terracotta` | `#D5602B` | Accento principale: titoli grandi, grafica | 3,29 su crema: **solo testo grande (≥ 24 px) e grafica** |
+| `--color-mattone` | `#A8421A` | Link, numeri e testo piccolo d'accento, pulsanti, fascia "Prenotare da qui" | 5,27 su crema, AA |
+| `--color-ocra` | `#EBAE34` | Accento raro: pulsanti e titoli su verde | inchiostro su ocra 8,38 |
+| `--color-ocra-chiara` | `#F4CB72` | Testo piccolo su verde e su mattone | AA |
+| `--color-verde` | `#1F5540` | Footer, sezione sistemazioni, menu mobile | crema su verde 7,50, AAA |
+| `--color-legno` | `#6B4A32` | Testo secondario, linee | 6,88 su crema, AA |
+| `--color-inchiostro` | `#221E1A` | Testo corrente | AAA |
 
-Modifica rispetto alla proposta di partenza: ho aggiunto `--mattone` e `--sabbia`. Il motivo è l'accessibilità: la terracotta della facciata è troppo chiara per il testo piccolo su crema.
-Architettura dei token a tre livelli (dalla skill `design-system`): colori grezzi → ruoli (`--sfondo`, `--testo`, `--accento`, `--accento-testo`, `--linea`) → componenti (`--pulsante-sfondo`, ecc.), definiti in `app/globals.css` con `@theme`.
+Rispetto alla proposta di partenza ho aggiunto `mattone`, `sabbia` e `ocra-chiara`. Il motivo è l'accessibilità: la terracotta della facciata è troppo chiara per il testo piccolo.
+I token sono in `app/globals.css` su tre livelli: colori grezzi (`@theme`) → ruoli (`--sfondo`, `--testo`, `--accento`) → componenti (`--pulsante-sfondo`).
 
 Le skill di progetto propongono per gli hotel "blu navy e oro" e glassmorphism. Non li uso: contraddicono la locanda reale. Dalle skill tengo le regole di UX: contrasto AA, aree di tocco di almeno 44 px, etichette visibili nei form, focus visibile, spazio riservato alle immagini.
 
@@ -54,7 +55,7 @@ Le skill di progetto propongono per gli hotel "blu navy e oro" e glassmorphism. 
 
 | Ruolo | Font | Motivo |
 |---|---|---|
-| Titoli | **Fraunces** (variabile, tondo e corsivo, licenza OFL) | Serif "old style" morbido con un sapore anni Settanta, vicino alle insegne dipinte. Ha il corsivo, che serve per i titoli a due righe. Ha l'asse della dimensione ottica: resta elegante a 120 px e leggibile a 24 px. Young Serif ha un solo peso e nessun corsivo. |
+| Titoli | **Fraunces** (peso 400, tondo e corsivo, licenza OFL) | Serif "old style" morbido con un sapore anni Settanta, vicino alle insegne dipinte. Ha il corsivo, che serve per i titoli a due righe. Young Serif non ha il corsivo. Uso un solo peso senza assi variabili: i due file pesano 41 KB invece di 270 KB, e su rete mobile la differenza si sente. |
 | Testo e interfaccia | **Figtree** (variabile, licenza OFL) | Sans amichevole e molto leggibile, con forme leggermente tonde che si accordano a Fraunces. Regge bene le etichette maiuscole spaziate. |
 | Insegna | Figtree 800 in maiuscolo, una lettera per casella | Riprende l'insegna verticale "ALLOGGI": lettere impilate in caselle chiare con bordo, in terracotta. |
 
@@ -71,10 +72,23 @@ Coppia diversa da Cormorant Garamond + Raleway, come richiesto.
 
 ## 6. Movimento
 
-- **Framer Motion** resta, **GSAP esce** dalle dipendenze. Motivo: slider e filtro sono componenti React con entrata e uscita, e Framer Motion li gestisce in modo nativo; con il caricamento ridotto (`LazyMotion`) pesa poco.
-- **Lenis** per lo scroll morbido, spento con `prefers-reduced-motion`.
-- Comparse dal basso con dissolvenza (0,9–1,2 s), immagini scoperte da una maschera, header trasparente che diventa crema, menu mobile a tutto schermo.
-- **Three.js**: un solo candidato, una leggera ondulazione della foto dell'hero al passaggio del mouse, solo su desktop. Se Lighthouse mobile scende sotto 90, tolgo l'effetto e le tre dipendenze.
+**La hero animata** (richiesta del committente: simpatica, che colpisca, non esagerata):
+
+1. Le lettere dell'insegna "ALLOGGI" si accendono una alla volta, come un neon. Ogni tanto una lettera sfarfalla.
+2. Il titolo sale riga per riga da dietro una maschera.
+3. Sopra la foto si srotola una tenda crema smerlata con la scritta "Belvedere". Poi si muove piano, come al vento.
+4. In basso un piccolo tram parte dalla locanda arancione, passa il Ponte della Libertà e arriva a Venezia. Poi riparte.
+5. Con il mouse, la foto in cornice si inclina leggermente.
+
+Tutto è fatto con CSS e SVG, senza librerie. Con `prefers-reduced-motion` le animazioni si fermano e il tram resta a metà del ponte.
+
+**Librerie**
+
+- **Framer Motion** resta, solo per lo slider delle sistemazioni, e si carica dopo l'avvio della pagina. **GSAP è stato rimosso.**
+- **Lenis** per lo scroll morbido: solo su desktop con mouse, spento con `prefers-reduced-motion`.
+- **Three.js è stato rimosso** (con `@react-three/fiber` e `@react-three/drei`). L'effetto di carattere è il tram in SVG, che racconta il punto di forza della locanda e pesa pochissimo. Un effetto WebGL avrebbe abbassato il punteggio Lighthouse mobile.
+
+**Nel resto del sito**: comparse dal basso con dissolvenza, foto scoperte da una maschera, header trasparente che diventa crema, menu mobile a tutto schermo, tessere della mappa che compaiono a gruppi. Il contenuto è sempre nell'HTML: senza JavaScript resta tutto visibile.
 
 ## 7. Sitemap
 
@@ -179,11 +193,11 @@ Usate: 14. Scartate o non pubblicate: 3 (02, 08, 10).
 14. Esiste il file originale del logo NLB?
 15. Colazione, parcheggio, deposito bagagli, animali: ci sono?
 
-## 11. Decisioni che chiedo di approvare
+## 11. Decisioni approvate
 
-1. Palette con l'aggiunta di `--mattone` e `--sabbia`.
+1. Palette con l'aggiunta di `mattone` e `sabbia`. **Modificata: più accesa.**
 2. Fraunces per i titoli, Figtree per il testo.
-3. Foto 04 come immagine dell'hero, in cornice.
+3. Foto 04 come immagine dell'hero, in cornice. **Modificata: hero animata.**
 4. Selettore del tipo di viaggio: da solo, in due, in gruppo.
 5. Framer Motion resta, GSAP esce.
 6. Foto 02, 08 e 10 non pubblicate.

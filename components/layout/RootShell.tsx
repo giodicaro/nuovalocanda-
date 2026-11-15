@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import { figtree, fraunces } from "@/app/fonts";
 import { getDictionary } from "@/content/i18n";
 import type { Locale } from "@/content/site";
@@ -16,7 +16,9 @@ export function RootShell({ lang, children }: { lang: Locale; children: ReactNod
         <main id="contenuto" tabIndex={-1} className="flex-1 outline-none">
           {children}
         </main>
-        <Footer lang={lang} dict={dict} />
+        <Suspense>
+          <Footer lang={lang} dict={dict} />
+        </Suspense>
         <ClientEffects />
       </body>
     </html>

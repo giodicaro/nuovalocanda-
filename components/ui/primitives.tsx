@@ -110,7 +110,7 @@ export function ButtonLink({
   className?: string;
 }) {
   return (
-    <Link href={href} className={cn(buttonStyles[variant], className)}>
+    <Link prefetch={false} href={href} className={cn(buttonStyles[variant], className)}>
       {children}
     </Link>
   );
@@ -186,6 +186,7 @@ export function Sign({
 }) {
   return (
     <p
+      role="img"
       aria-label={text}
       className={cn(
         "flex gap-[5px]",

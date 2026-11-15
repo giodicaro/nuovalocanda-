@@ -20,12 +20,8 @@ function Scene({ width, id }: { width: number; id: string }) {
   for (let x = bridgeStart + 30; x < bridgeEnd; x += 118) poles.push(x);
 
   return (
-    <svg
-      viewBox={`0 0 ${width} ${H}`}
-      className="block h-auto w-full"
-      aria-hidden="true"
-      focusable="false"
-    >
+    <div className="relative [container-type:inline-size]" aria-hidden="true">
+    <svg viewBox={`0 0 ${width} ${H}`} className="block h-auto w-full" focusable="false">
       <defs>
         <pattern id={`${id}-arco`} width="40" height="18" patternUnits="userSpaceOnUse">
           <path
@@ -76,7 +72,6 @@ function Scene({ width, id }: { width: number; id: string }) {
       {/* Laguna */}
       <g clipPath={`url(#${id}-laguna)`}>
         <rect
-          className="acqua"
           x={bridgeStart - 22}
           y="131"
           width={bridgeLen + 100}
@@ -157,28 +152,41 @@ function Scene({ width, id }: { width: number; id: string }) {
       </g>
       <line x1={bridgeEnd} y1={deck + 1} x2={width} y2={deck + 1} stroke="var(--color-legno)" strokeWidth="2" />
 
-      {/* Tram */}
-      <g className="tram" style={{ "--corsa": `${run}px` } as CSSProperties}>
-        <g transform={`translate(${tramStart} 0)`}>
-          <path
-            d="M36 86 L44 79 L36 72 M44 79 L52 79"
-            fill="none"
-            stroke="var(--color-inchiostro)"
-            strokeWidth="1.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <rect x="0" y="86" width="74" height="23" rx="7" fill="var(--color-mattone)" />
-          <rect x="0" y="101" width="74" height="4" fill="var(--color-ocra)" />
-          {[7, 23, 39, 55].map((x) => (
-            <rect key={x} x={x} y="90.5" width="12" height="8" rx="1.5" fill="var(--color-carta)" />
-          ))}
-          <circle cx="16" cy="110" r="3.6" fill="var(--color-inchiostro)" />
-          <circle cx="58" cy="110" r="3.6" fill="var(--color-inchiostro)" />
-          <circle className="fanale" cx="71" cy="103" r="2" fill="var(--color-carta)" />
-        </g>
-      </g>
     </svg>
+
+      {/* Tram: un elemento a sé, mosso solo con transform. Così l'animazione
+          gira sul compositore e non impegna il processore a ogni fotogramma. */}
+      <svg
+        viewBox="0 68 74 46"
+        focusable="false"
+        className="tram absolute h-auto will-change-transform"
+        style={
+          {
+            left: `${(tramStart / width) * 100}%`,
+            top: `${(68 / H) * 100}%`,
+            width: `${(74 / width) * 100}%`,
+            "--corsa": `${(run / width) * 100}cqw`,
+          } as CSSProperties
+        }
+      >
+        <path
+          d="M36 86 L44 79 L36 72 M44 79 L52 79"
+          fill="none"
+          stroke="var(--color-inchiostro)"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <rect x="0" y="86" width="74" height="23" rx="7" fill="var(--color-mattone)" />
+        <rect x="0" y="101" width="74" height="4" fill="var(--color-ocra)" />
+        {[7, 23, 39, 55].map((x) => (
+          <rect key={x} x={x} y="90.5" width="12" height="8" rx="1.5" fill="var(--color-carta)" />
+        ))}
+        <circle cx="16" cy="110" r="3.6" fill="var(--color-inchiostro)" />
+        <circle cx="58" cy="110" r="3.6" fill="var(--color-inchiostro)" />
+        <circle cx="71" cy="103" r="2" fill="var(--color-carta)" />
+      </svg>
+    </div>
   );
 }
 
@@ -197,7 +205,7 @@ export function HeroTram({
         <Scene width={640} id="tram-s" />
       </div>
       <div className="hidden md:block">
-        <Scene width={1200} id="tram-l" />
+        <Scene width={980} id="tram-l" />
       </div>
       <p className="mt-2 flex items-baseline justify-between gap-4 text-[0.66rem] font-semibold tracking-[0.2em] text-legno uppercase">
         <span>{from}</span>

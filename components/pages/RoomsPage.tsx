@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { getDictionary } from "@/content/i18n";
 import { bathAmenities, roomAmenities, rooms, type Room } from "@/content/rooms";
 import { href } from "@/content/routes";
@@ -26,12 +27,13 @@ export function RoomsPage({ lang }: { lang: Locale }) {
       {groups.map((group) => {
         const list = rooms.filter((room) => room.group === group.key);
         return (
-          <section key={group.key} aria-labelledby={`gruppo-${group.key}`} className="contenitore pb-[clamp(3rem,7vw,6rem)]">
+          <Suspense key={group.key}>
+          <section aria-labelledby={`gruppo-${group.key}`} className="contenitore pb-[clamp(3rem,7vw,6rem)]">
             <div className="flex items-baseline justify-between gap-6 border-b border-inchiostro pb-4">
               <h2 id={`gruppo-${group.key}`} className="font-serif text-[clamp(1.7rem,3vw,2.4rem)]">
                 {group.title}
               </h2>
-              <p className="font-serif text-[1.1rem] text-terracotta" aria-hidden="true">
+              <p className="font-serif text-[1.1rem] text-mattone" aria-hidden="true">
                 {two(list.length)}
               </p>
             </div>
@@ -66,7 +68,7 @@ export function RoomsPage({ lang }: { lang: Locale }) {
                   </div>
 
                   <div>
-                    <p className="font-serif text-[1.05rem] text-terracotta" aria-hidden="true">
+                    <p className="font-serif text-[1.05rem] text-mattone" aria-hidden="true">
                       {number}
                     </p>
                     <h3 className="titolo-scheda mt-2">{room.name[lang]}</h3>
@@ -95,10 +97,12 @@ export function RoomsPage({ lang }: { lang: Locale }) {
               );
             })}
           </section>
+          </Suspense>
         );
       })}
 
       {/* Dotazioni verificate (scheda Booking.com del 15/11/2026) */}
+      <Suspense>
       <section aria-labelledby="dotazioni" className="relative mt-6 bg-carta">
         <Scallop color="var(--color-crema)" />
         <div className="contenitore sezione grid gap-x-16 gap-y-12 md:grid-cols-2">
@@ -136,6 +140,7 @@ export function RoomsPage({ lang }: { lang: Locale }) {
           </Reveal>
         </div>
       </section>
+      </Suspense>
     </>
   );
 }

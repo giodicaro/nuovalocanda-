@@ -86,9 +86,8 @@ export function Header({ lang, nav }: { lang: Locale; nav: Dictionary["nav"] }) 
       </a>
 
       <div className="contenitore flex h-(--header-altezza) items-center justify-between gap-6">
-        <Link
+        <Link prefetch={false}
           href={href("home", lang)}
-          aria-label={nav.homeAria}
           onClick={() => setOpen(false)}
           className={cn(
             "relative z-[55] flex items-baseline gap-2.5 font-serif leading-none transition-colors duration-300",
@@ -97,20 +96,20 @@ export function Header({ lang, nav }: { lang: Locale; nav: Dictionary["nav"] }) 
         >
           <span
             className={cn(
-              "text-[1.6rem] font-medium tracking-[0.04em]",
+              "text-[1.6rem] tracking-[0.04em]",
               open ? "text-ocra" : "text-terracotta",
             )}
           >
             NLB
           </span>
-          <span className="hidden text-[0.95rem] tracking-[0.01em] xs:inline">
+          <span className="text-[0.95rem] tracking-[0.01em] max-xs:sr-only">
             Nuova Locanda Belvedere
           </span>
         </Link>
 
         <nav aria-label={nav.main} className="hidden items-center gap-9 md:flex">
           {links.map((key) => (
-            <Link
+            <Link prefetch={false}
               key={key}
               href={href(key, lang)}
               aria-current={current === key ? "page" : undefined}
@@ -138,7 +137,7 @@ export function Header({ lang, nav }: { lang: Locale; nav: Dictionary["nav"] }) 
             <span className="sr-only">{nav.language}: </span>
             {nav.switchTo}
           </a>
-          <Link href={href("book", lang)} className={cn(buttonStyles.solid, "min-h-11 px-6")}>
+          <Link prefetch={false} href={href("book", lang)} className={cn(buttonStyles.solid, "min-h-11 px-6")}>
             {nav.book}
           </Link>
         </nav>
@@ -181,7 +180,7 @@ export function Header({ lang, nav }: { lang: Locale; nav: Dictionary["nav"] }) 
       >
         <nav aria-label={nav.main} className="flex flex-col">
           {(["home", ...links, "book"] as NavKey[]).map((key, i) => (
-            <Link
+            <Link prefetch={false}
               key={key}
               href={href(key, lang)}
               onClick={() => setOpen(false)}

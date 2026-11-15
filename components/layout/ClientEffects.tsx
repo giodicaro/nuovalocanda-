@@ -19,27 +19,29 @@ export function ClientEffects() {
     );
     if (!targets.length || !("IntersectionObserver" in window)) return;
 
+    // Nessuna misura sincrona della pagina: decide tutto l'observer.
+    // Al primo avviso, ciò che è già nello schermo (o sopra) resta com'è;
+    // ciò che è sotto viene nascosto e compare quando entra.
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          (entry.target as HTMLElement).dataset.comparsa = "dentro";
-          observer.unobserve(entry.target);
+          const el = entry.target as HTMLElement;
+          if (!el.dataset.comparsa) {
+            if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+              el.dataset.comparsa = "visto";
+              observer.unobserve(el);
+            } else {
+              el.dataset.comparsa = "attesa";
+            }
+          } else if (entry.isIntersecting) {
+            el.dataset.comparsa = "dentro";
+            observer.unobserve(el);
+          }
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.05 },
     );
-
-    const limit = window.innerHeight * 0.92;
-    for (const el of targets) {
-      // Ciò che è già visibile resta com'è: niente lampeggi al caricamento.
-      if (el.getBoundingClientRect().top < limit) {
-        el.dataset.comparsa = "visto";
-        continue;
-      }
-      el.dataset.comparsa = "attesa";
-      observer.observe(el);
-    }
+    for (const el of targets) observer.observe(el);
 
     return () => observer.disconnect();
   }, [pathname]);

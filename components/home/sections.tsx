@@ -125,7 +125,7 @@ export function VeniceSection({ lang, dict }: Props) {
         <ol className="mt-12 grid gap-px border border-sabbia bg-sabbia md:grid-cols-3">
           {t.ways.map((way, i) => (
             <Reveal as="li" key={way.name} delay={i * 110} className="bg-crema p-[clamp(1.5rem,3vw,2.4rem)]">
-              <p className="font-serif text-[1.05rem] text-terracotta" aria-hidden="true">
+              <p className="font-serif text-[1.05rem] text-mattone" aria-hidden="true">
                 {two(i + 1)} / {two(t.ways.length)}
               </p>
               <h3 className="mt-5 font-serif text-[2rem] leading-none">{way.name}</h3>
@@ -240,10 +240,10 @@ export function HouseSection({ lang, dict }: Props) {
             </Reveal>
             <div className="mt-8 grid grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] items-start gap-5 sm:gap-8">
               <Reveal delay={100}>
-                <Frame photo="terrazza" lang={lang} caption={t.captionTerrace} number="N. 04" />
+                <Frame photo="terrazza" lang={lang} caption={t.captionTerrace} />
               </Reveal>
               <Reveal delay={200} className="mt-10">
-                <Frame photo="balconcino" lang={lang} caption={t.captionBalcony} number="N. 05" />
+                <Frame photo="balconcino" lang={lang} caption={t.captionBalcony} />
               </Reveal>
             </div>
           </div>
@@ -253,7 +253,7 @@ export function HouseSection({ lang, dict }: Props) {
               <p className="max-w-[44ch] text-[1.08rem] text-legno">{t.text}</p>
             </Reveal>
             <Reveal delay={100} className="mt-10">
-              <h3 className="etichetta text-legno">{t.amenitiesTitle}</h3>
+              <h3 className="etichetta font-sans text-legno">{t.amenitiesTitle}</h3>
               <ul className="mt-4 border-t border-sabbia">
                 {t.amenities.map((item) => (
                   <li key={item} className="border-b border-sabbia py-3.5 font-serif text-[1.25rem]">
@@ -373,7 +373,7 @@ export function BookSection({ lang, dict }: Props) {
             </h2>
             <p className="mt-7 max-w-[38ch] text-[1.08rem] text-legno">{t.text}</p>
             <p className="mt-5">
-              <Link
+              <Link prefetch={false}
                 href={href("book", lang)}
                 className="font-medium text-mattone underline underline-offset-4 hover:text-inchiostro"
               >

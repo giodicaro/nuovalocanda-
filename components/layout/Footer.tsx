@@ -14,7 +14,10 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
     "inline-flex min-h-11 items-center border-b border-transparent transition-colors duration-300 hover:border-ocra hover:text-ocra";
 
   return (
-    <footer className="su-scuro relative bg-verde text-crema">
+    <footer
+      className="su-scuro relative bg-verde text-crema"
+      style={{ contentVisibility: "auto", containIntrinsicSize: "auto 44rem" }}
+    >
       <Scallop color="var(--color-crema)" />
 
       <div className="contenitore pt-[clamp(3.5rem,8vw,6.5rem)] pb-8">
@@ -91,7 +94,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
             <ul className="mt-2 text-[0.98rem]">
               {(["rooms", "venice", "book"] as const).map((key) => (
                 <li key={key}>
-                  <Link className={linkClass} href={href(key, lang)}>
+                  <Link prefetch={false} className={linkClass} href={href(key, lang)}>
                     {dict.nav[key]}
                   </Link>
                 </li>
@@ -114,7 +117,6 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         <p
           aria-hidden="true"
           className="mt-[clamp(3rem,8vw,6rem)] font-serif text-[clamp(4.2rem,17.5vw,15rem)] leading-[0.82] tracking-[-0.03em] text-ocra italic select-none"
-          style={{ fontVariationSettings: '"SOFT" 100' }}
         >
           Belvedere
         </p>
@@ -133,10 +135,10 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
             </span>
           </p>
           <p className="flex flex-wrap items-center gap-x-5 gap-y-1">
-            <Link className={linkClass} href={href("privacy", lang)}>
+            <Link prefetch={false} className={linkClass} href={href("privacy", lang)}>
               {t.privacy}
             </Link>
-            <Link className={linkClass} href={href("cookies", lang)}>
+            <Link prefetch={false} className={linkClass} href={href("cookies", lang)}>
               {t.cookies}
             </Link>
             <a className={linkClass} href="#contenuto">

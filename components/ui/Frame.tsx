@@ -47,11 +47,10 @@ export function Frame({
       )}
       style={{ maxWidth: width + pad * 2, padding: pad, paddingBottom: 0 }}
     >
-      <div className={cn("maschera-foto overflow-hidden", maskClassName)} style={maskStyle}>
+      <div className={cn("maschera-foto overflow-hidden bg-sabbia", maskClassName)} style={maskStyle}>
         <Image
           src={p.src}
           alt={p.alt[lang]}
-          placeholder="blur"
           sizes={`(max-width: ${width + 64}px) calc(100vw - 4rem), ${width}px`}
           loading={eager ? "eager" : "lazy"}
           fetchPriority={eager ? "high" : "auto"}
@@ -59,7 +58,7 @@ export function Frame({
         />
       </div>
       {children}
-      <figcaption className="flex min-h-9 items-center justify-between gap-4 px-0.5 text-[0.68rem] font-medium tracking-[0.18em] text-legno uppercase">
+      <figcaption className="flex min-h-9 items-center justify-between gap-3 px-0.5 text-[0.62rem] font-medium tracking-[0.14em] text-legno uppercase sm:text-[0.68rem] sm:tracking-[0.18em]">
         <span>{caption}</span>
         {number ? <span aria-hidden="true">{number}</span> : null}
       </figcaption>

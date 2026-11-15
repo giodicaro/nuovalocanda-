@@ -83,10 +83,13 @@ export function RequestForm({
   lang,
   t,
   common,
+  heading: Heading = "h3",
 }: {
   lang: Locale;
   t: Dictionary["form"];
   common: Dictionary["common"];
+  /** Livello del titolo: dipende dalla pagina che ospita il modulo. */
+  heading?: "h2" | "h3";
 }) {
   const uid = useId();
   const id = (name: string) => `${uid}-${name}`;
@@ -196,9 +199,9 @@ export function RequestForm({
   return (
     <div className="border border-sabbia bg-carta p-[clamp(1.5rem,4vw,3rem)] shadow-[0_18px_40px_-30px_rgba(34,30,26,0.45)]">
       <form ref={formRef} noValidate onSubmit={onSubmit} aria-labelledby={id("titolo")}>
-        <h3 id={id("titolo")} className="font-serif text-[1.9rem] leading-tight">
+        <Heading id={id("titolo")} className="font-serif text-[1.9rem] leading-tight">
           {t.title}
-        </h3>
+        </Heading>
         <p className="mt-2 text-[0.95rem] text-legno">{t.note}</p>
 
         <div aria-live="assertive">
@@ -348,7 +351,7 @@ export function RequestForm({
               />
               <label htmlFor={id("consent")} className="text-[0.95rem] text-inchiostro">
                 {t.consent}.{" "}
-                <Link
+                <Link prefetch={false}
                   href={href("privacy", lang)}
                   className="font-medium text-mattone underline underline-offset-4 hover:text-inchiostro"
                 >

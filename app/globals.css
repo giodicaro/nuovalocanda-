@@ -43,51 +43,48 @@
   --header-altezza: 4.5rem;
 }
 
-html {
-  background: var(--sfondo);
-  color: var(--testo);
-  -webkit-text-size-adjust: 100%;
-  scroll-padding-top: calc(var(--header-altezza) + 1rem);
-}
+/* Stili di base nel livello "base": le utilità Tailwind li possono superare. */
+@layer base {
+  html {
+    background: var(--sfondo);
+    color: var(--testo);
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-altezza) + 1rem);
+  }
 
-body {
-  font-family: var(--font-sans);
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: clip;
-}
+  body {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
 
-h1,
-h2,
-h3 {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-variation-settings: "SOFT" 50;
-  letter-spacing: -0.02em;
-  line-height: 1.04;
-  text-wrap: balance;
-}
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+  }
 
-p {
-  text-wrap: pretty;
-}
+  ::selection {
+    background: var(--color-terracotta);
+    color: var(--color-carta);
+  }
 
-::selection {
-  background: var(--color-terracotta);
-  color: var(--color-carta);
-}
+  :focus-visible {
+    outline: 2.5px solid var(--color-mattone);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 
-:focus-visible {
-  outline: 2.5px solid var(--color-mattone);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-.su-scuro :focus-visible,
-.su-scuro:focus-visible {
-  outline-color: var(--color-ocra);
+  .su-scuro :focus-visible,
+  .su-scuro:focus-visible {
+    outline-color: var(--color-ocra);
+  }
 }
 
 /* ---------- Utilità tipografiche ---------- */
@@ -105,12 +102,15 @@ p {
 }
 
 @utility titolo-hero {
-  font-size: clamp(2.6rem, 6.4vw, 6.25rem);
+  /* Tiene conto anche dell'altezza dello schermo: il tram in fondo
+     all'hero deve restare visibile su un portatile. */
+  font-size: clamp(2.6rem, min(4.9vw, 7.6svh), 6rem);
   line-height: 0.98;
 }
 
 @utility titolo-sezione {
   font-size: clamp(2.1rem, 4.4vw, 3.9rem);
+  text-wrap: balance;
 }
 
 @utility titolo-scheda {
@@ -126,6 +126,10 @@ p {
 
 @utility sezione {
   padding-block: clamp(4.5rem, 10vw, 9.5rem);
+  /* Le sezioni fuori dallo schermo non vengono disegnate finché non servono:
+     il primo caricamento è più leggero. L'altezza stimata evita salti. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 56rem;
 }
 
 /* ---------- Comparsa allo scroll ----------
@@ -240,15 +244,6 @@ p {
   }
 }
 
-@keyframes scopre {
-  from {
-    clip-path: inset(0 0 100% 0);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
 @keyframes posa {
   from {
     transform: scale(1.1);
@@ -282,15 +277,6 @@ p {
   100% {
     transform: translateX(var(--corsa));
     opacity: 0;
-  }
-}
-
-@keyframes onda {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-48px);
   }
 }
 
@@ -341,14 +327,9 @@ p {
   animation-delay: 2.4s;
 }
 
-.foto-scopre {
-  animation: scopre 1.5s var(--ease-calmo) both;
-  animation-delay: var(--ritardo, 0ms);
-}
-
-.foto-scopre > * {
-  animation: posa 2.2s var(--ease-calmo) both;
-  animation-delay: var(--ritardo, 0ms);
+/* La foto dell'hero è visibile da subito: si "posa" con una scala leggera. */
+.foto-posa > * {
+  animation: posa 2.4s var(--ease-calmo) both;
 }
 
 .tram {
@@ -357,34 +338,28 @@ p {
   opacity: 0;
 }
 
-.acqua {
-  animation: onda 5s linear infinite;
-}
-
 .fanale {
   animation: lampeggia 1.6s ease-in-out infinite;
 }
 
-/* Tessere del mosaico: compaiono a caso, poi restano. */
-@keyframes tessera {
+/* Tessere del mosaico: compaiono a gruppi sparsi, poi restano. */
+@keyframes tessere {
   from {
     opacity: 0;
-    transform: scale(0.4);
   }
   to {
     opacity: 1;
-    transform: none;
   }
 }
 
-[data-comparsa="attesa"] .tessera {
+/* Quando le tessere sono disegnate, il disegno semplice sparisce. */
+.mosaico[data-mosaico="vivo"] .mosaico-base {
   opacity: 0;
+  transition: opacity 0.6s linear 1.2s;
 }
 
-[data-comparsa="dentro"] .tessera {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: tessera 0.7s var(--ease-calmo) both;
+.mosaico .tessere {
+  animation: tessere 0.6s ease-out both;
   animation-delay: var(--ritardo, 0ms);
 }
 
@@ -412,14 +387,12 @@ p {
 
   .riga-titolo > span,
   .entra,
-  .foto-scopre,
-  .foto-scopre > *,
+  .foto-posa > *,
   .tenda-srotola,
   .tenda-brezza,
   .lettera-insegna,
-  .acqua,
   .fanale,
-  [data-comparsa="dentro"] .tessera {
+  .mosaico .tessere {
     animation: none;
   }
 
