@@ -3,6 +3,7 @@ import { href } from "@/content/routes";
 import { contacts, site, type Locale } from "@/content/site";
 import type { Dictionary } from "@/content/i18n";
 import { Label, Scallop, Tbc } from "@/components/ui/primitives";
+import { LangLink } from "./LangLink";
 import { VeniceClock } from "./VeniceClock";
 
 export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
@@ -100,14 +101,9 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
                 </li>
               ))}
               <li>
-                <a
-                  className={linkClass}
-                  href={href("home", other)}
-                  hrefLang={other}
-                  lang={other}
-                >
+                <LangLink to={other} className={linkClass}>
                   {dict.nav.switchTo}
-                </a>
+                </LangLink>
               </li>
             </ul>
           </nav>

@@ -45,8 +45,8 @@ export const rooms: Room[] = [
     trips: ["solo"],
     name: { it: "Singola con bagno in comune", en: "Single room, shared bathroom" },
     blurb: {
-      it: "La stanza più piccola della casa. Un letto, una scrivania, una porta che si chiude. Il bagno è in comune con altri ospiti.",
-      en: "The smallest room in the house. A bed, a desk, a door that closes. The bathroom is shared with other guests.",
+      it: "Una stanza piccola, per una persona. Un letto, una scrivania, una porta che si chiude. Il bagno è in comune con altri ospiti.",
+      en: "A small room for one person. A bed, a desk, a door that closes. The bathroom is shared with other guests.",
     },
     guests: 1,
     beds: { it: "1 letto singolo", en: "1 single bed" },
@@ -79,8 +79,8 @@ export const rooms: Room[] = [
     trips: ["duo"],
     name: { it: "Matrimoniale", en: "Double room" },
     blurb: {
-      it: "Un letto matrimoniale, la scrivania, l'armadio. Il bagno è in camera.",
-      en: "A double bed, a desk, a wardrobe. The bathroom is in the room.",
+      it: "Un letto matrimoniale, la scrivania, l'armadio. Il bagno è privato.",
+      en: "A double bed, a desk, a wardrobe. The bathroom is private.",
     },
     guests: 2,
     beds: { it: "1 letto matrimoniale", en: "1 double bed" },
@@ -96,8 +96,8 @@ export const rooms: Room[] = [
     trips: ["duo"],
     name: { it: "Doppia con letti singoli", en: "Twin room" },
     blurb: {
-      it: "Due letti singoli oppure un matrimoniale: ditecelo quando prenotate. Il bagno è in camera.",
-      en: "Two single beds or one double: tell us when you book. The bathroom is in the room.",
+      it: "Due letti singoli oppure un matrimoniale: diteci che cosa preferite nella richiesta. Il bagno è privato.",
+      en: "Two single beds or one double: tell us which you prefer in your request. The bathroom is private.",
     },
     guests: 2,
     beds: {
@@ -136,8 +136,8 @@ export const rooms: Room[] = [
     trips: ["group"],
     name: { it: "Tripla", en: "Triple room" },
     blurb: {
-      it: "Tre letti e il bagno in camera. Per tre amici, o per una famiglia con un figlio.",
-      en: "Three beds and an en-suite bathroom. For three friends, or a family with one child.",
+      it: "Fino a tre letti singoli e il bagno privato. Per chi viaggia in tre.",
+      en: "Up to three single beds and a private bathroom. For a party of three.",
     },
     guests: 3,
     beds: { it: "3 letti singoli oppure 2 singoli", en: "3 single beds or 2 single beds" },
@@ -153,8 +153,8 @@ export const rooms: Room[] = [
     trips: ["group"],
     name: { it: "Quadrupla", en: "Quadruple room" },
     blurb: {
-      it: "La stanza delle famiglie: quattro posti letto e il bagno in camera.",
-      en: "The family room: four sleeping places and an en-suite bathroom.",
+      it: "Quattro posti letto e il bagno privato.",
+      en: "Sleeps four, with a private bathroom.",
     },
     guests: 4,
     beds: {
@@ -173,11 +173,11 @@ export const rooms: Room[] = [
     trips: ["group"],
     name: { it: "Quadrupla Economy", en: "Economy quadruple room" },
     blurb: {
-      it: "Quattro letti a castello in una stanza tutta per il vostro gruppo. Il bagno è in comune.",
-      en: "Four bunk beds in a room just for your group. The bathroom is shared.",
+      it: "Quattro posti in letti a castello. Il bagno è in comune.",
+      en: "Four beds in bunks. The bathroom is shared.",
     },
     guests: 4,
-    beds: { it: "4 letti a castello", en: "4 bunk beds" },
+    beds: { it: "4 letti a castello", en: "4 beds in bunks" },
     areaSqm: 20,
     bath: "shared",
     photos: [],
@@ -221,7 +221,7 @@ export const roomAmenities: Localized<string[]> = {
     "Ferro da stiro",
   ],
   en: [
-    "Individual air conditioning",
+    "Individually controlled air conditioning",
     "Heating",
     "Free WiFi",
     "Flat-screen TV",

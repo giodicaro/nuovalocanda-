@@ -6,12 +6,12 @@ export const en: Dictionary = {
     home: {
       title: "Nuova Locanda Belvedere — A place to sleep in Marghera, near Venice",
       description:
-        "An eight-room inn in Marghera, on the Venice mainland. Single, double, triple and quadruple rooms. Venice is a tram, bus or train ride away. Book directly, with no middleman.",
+        "An eight-room inn in Marghera, on the Venice mainland. Single, double, triple and quadruple rooms. Venice is a tram, bus or train ride away. Ask the inn directly, with no middleman.",
     },
     rooms: {
       title: "Rooms — Nuova Locanda Belvedere, Marghera Venice",
       description:
-        "Every place to sleep at the inn: single, double, twin, triple and quadruple rooms, plus a shared dormitory. Guests, beds, size and bathroom type for each one.",
+        "Every place to sleep at the inn: single, double, twin, triple and quadruple rooms. Guests, beds, size and bathroom type for each one.",
     },
     venice: {
       title: "Getting to Venice from Marghera — Nuova Locanda Belvedere",
@@ -44,6 +44,8 @@ export const en: Dictionary = {
     main: "Main navigation",
     language: "Language",
     switchTo: "Italiano",
+    pauseMotion: "Pause animations",
+    playMotion: "Resume animations",
     homeAria: "Nuova Locanda Belvedere, home page",
   },
 
@@ -57,7 +59,7 @@ export const en: Dictionary = {
     beds: "Beds",
     area: "Size",
     bath: "Bathroom",
-    bathPrivate: "Private, en suite",
+    bathPrivate: "Private",
     bathShared: "Shared",
     photoMissing: "Photo needed",
     photoTbc: "Photo match to be confirmed",
@@ -70,7 +72,7 @@ export const en: Dictionary = {
     label: "Marghera · Venice",
     title1: "A room in Marghera.",
     title2: "Venice, just across the bridge.",
-    text: "Eight simple, clean rooms on the mainland. In the morning you leave for Venice by tram, bus or train. In the evening you come back to where someone is waiting for you.",
+    text: "Eight simple, clean rooms on the mainland. In the morning you leave for Venice by tram, bus or train. In the evening you come back home.",
     ctaSecondary: "See the rooms",
     sign: "Alloggi",
     photoCaption: "The entrance, on the corner",
@@ -78,16 +80,16 @@ export const en: Dictionary = {
     tramBridge: "Ponte della Libertà",
     tramTo: "Venice",
     tramAlt:
-      "Illustration: a tram leaves the orange inn in Marghera, crosses the bridge over the lagoon and reaches Venice",
+      "Decorative illustration: a tram crosses the Ponte della Libertà, from the mainland towards Venice",
   },
 
   manifesto: {
     label: "The welcome",
     title1: "Here, the door is opened",
     title2: "by a person.",
-    p1: "Guests who have stayed here talk first about the people who welcomed them. At the desk you find someone who hands you the key and explains how to get to Venice.",
-    p2: "It is an old-style inn. The orange front, the awning over the door, the «Alloggi» sign you can see from the street. In the hall there is a large map of Venice: the right place to plan your day.",
-    aside: "Simple, clean, honestly priced.",
+    p1: "Guests who have stayed here talk first about the people who welcomed them. At reception you can ask how to get to Venice and where best to set off from.",
+    p2: "It is an old-style inn. The orange front, the awning over the door, the 'Alloggi' sign you can see from the street. In the hall there is a large map of Venice: the right place to plan your day.",
+    aside: "Simple, clean, no frills.",
     captionReception: "The reception",
     captionMosaic: "Our card",
   },
@@ -95,9 +97,9 @@ export const en: Dictionary = {
   rooms: {
     label: "Where you sleep",
     title1: "Tell us how you travel.",
-    title2: "We tell you where to sleep.",
+    title2: "We'll tell you where to sleep.",
     intro:
-      "Single, double, triple and quadruple rooms, plus a shared dormitory. Each card tells you straight away how many beds there are and whether the bathroom is en suite or shared.",
+      "Single, double, triple and quadruple rooms. Each card tells you straight away how many beds there are and whether the bathroom is private or shared.",
     filterLabel: "Type of trip",
     trips: { solo: "On my own", duo: "For two", group: "In a group" },
     prev: "Previous room",
@@ -116,7 +118,7 @@ export const en: Dictionary = {
     ways: [
       {
         name: "Tram",
-        text: "The ACTV network has two lines: T2 links Marghera to Mestre Centro, T1 links Mestre to Venice, Piazzale Roma.",
+        text: "The ACTV network has two tram lines. T2 links Marghera to Mestre Centro. T1 links Favaro Veneto to Venice, Piazzale Roma.",
         tbc: "Nearest stop and travel time",
       },
       {
@@ -162,7 +164,7 @@ export const en: Dictionary = {
     label: "Booking here",
     title1: "No middleman.",
     title2: "You talk to us.",
-    text: "When you write from this site, your request reaches the inn and not a booking portal. The person who replies is the one who will open the door.",
+    text: "When you write from this site, your request reaches the inn and not a booking portal. The people who reply are the people who work here.",
     placeholderTitle: "Benefit to be confirmed",
     placeholderText:
       "A real benefit for guests who book directly goes here. The owner will provide it.",
@@ -174,7 +176,7 @@ export const en: Dictionary = {
     title1: "A yellow hall, a terrace,",
     title2: "a small white balcony.",
     text: "The hall has yellow walls and a wooden ceiling. There is a covered terrace, with a table and a white balustrade overlooking the street.",
-    amenitiesTitle: "What you find",
+    amenitiesTitle: "What you'll find",
     amenities: ["Free WiFi", "Air conditioning and heating in the rooms", "Reception"],
     tbcItems: ["Breakfast", "Parking", "Luggage storage"],
     stairsTitle: "Steps and stairs",
@@ -210,13 +212,13 @@ export const en: Dictionary = {
   bookCta: {
     label: "Book",
     title1: "Send us your dates.",
-    title2: "We reply in person.",
+    title2: "You'll hear from us.",
     text: "This is a request, not a payment. We reply with availability and price.",
     eveningCaption: "The inn, in the evening",
   },
 
   footer: {
-    tagline: "An inn in Marghera, at the gates of Venice.",
+    tagline: "An inn in Marghera, on Venice's doorstep.",
     clock: "Time in Venice",
     where: "Where we are",
     contacts: "Contact",
@@ -238,15 +240,13 @@ export const en: Dictionary = {
     title1: "Every place to sleep,",
     title2: "one by one.",
     intro:
-      "For each one you find guests, beds, size and bathroom type. Prices depend on the dates: ask with a request and we will reply.",
+      "For each one you'll find guests, beds, size and bathroom type. Prices are not published here: ask with a request and we will reply.",
     groupPrivate: "Private rooms",
     groupDorm: "Shared dormitory",
-    amenitiesTitle: "In every room",
+    amenitiesTitle: "In the rooms",
     bathTitle: "In the bathrooms, private and shared",
     dormWarning:
       "To be confirmed with the owner: the number of beds and what the room includes have not been verified yet.",
-    sharedNote: "The bathroom is shared with other guests.",
-    privateNote: "The bathroom is in the room.",
     price: "Price",
     priceTbc: "On request",
   },
@@ -256,7 +256,7 @@ export const en: Dictionary = {
     title1: "From Marghera to Venice,",
     title2: "without getting lost.",
     intro:
-      "Sleeping in Marghera means having Venice close at hand and coming back, in the evening, to a quiet place. Here is how to get there and what to know before you set off.",
+      "Sleeping in Marghera means having Venice close at hand and coming back, in the evening, to the mainland. Here is how to get there and what to know before you set off.",
     waysTitle: "How to get there",
     waysNote:
       "Lines, stops and travel times from the inn are to be confirmed. For current timetables and fares, check the official sites.",
@@ -320,7 +320,7 @@ export const en: Dictionary = {
       {
         when: "21 November",
         name: "Madonna della Salute",
-        text: "The feast day Venetians care about most.",
+        text: "The pilgrimage to the Salute basilica.",
       },
     ],
     cta: "Choose your room",
@@ -331,7 +331,7 @@ export const en: Dictionary = {
     title1: "Ask for",
     title2: "your room.",
     intro:
-      "Send us your dates and how many you are. We reply with availability and price. Nothing is paid on this site.",
+      "Send us your dates and how many of you there are. We reply with availability and price. You pay nothing on this site.",
     infoTitle: "Times and house rules",
     info: {
       checkIn: "Check-in",
@@ -345,16 +345,16 @@ export const en: Dictionary = {
     faq: [
       {
         q: "Is this a booking or a request?",
-        a: "It is a request. We reply with availability and price. The booking is valid only after our confirmation.",
+        a: "It is a request. We reply with availability and price. Your booking is confirmed only when we confirm it.",
       },
       {
         q: "Do I have to pay online?",
-        a: "No. Nothing is paid on this site.",
+        a: "No. You pay nothing on this site.",
         tbc: "Payment methods",
       },
       {
-        q: "Is the bathroom in the room?",
-        a: "It depends on the room, and each card says so. «Private» means en suite. «Shared» means shared with other guests.",
+        q: "Is the bathroom private?",
+        a: "It depends on the room, and each card says so. 'Private' means for your room only. 'Shared' means shared with other guests.",
       },
       {
         q: "Are there stairs?",
@@ -433,6 +433,7 @@ export const en: Dictionary = {
           h: "What data we collect",
           p: [
             "We collect only the data you enter in the request form: name, email, phone if you give it, dates of stay, number of guests, chosen room and message.",
+            "To protect the form from abuse, the server keeps the IP address of anyone who sends a request for a few minutes. The request may appear in the server's technical logs.",
             "The site uses no analytics and no profiling tools.",
           ],
         },

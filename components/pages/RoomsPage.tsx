@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { getDictionary } from "@/content/i18n";
 import { bathAmenities, roomAmenities, rooms, type Room } from "@/content/rooms";
 import { href } from "@/content/routes";
@@ -27,8 +26,7 @@ export function RoomsPage({ lang }: { lang: Locale }) {
       {groups.map((group) => {
         const list = rooms.filter((room) => room.group === group.key);
         return (
-          <Suspense key={group.key}>
-          <section aria-labelledby={`gruppo-${group.key}`} className="contenitore pb-[clamp(3rem,7vw,6rem)]">
+          <section key={group.key} aria-labelledby={`gruppo-${group.key}`} className="contenitore pb-[clamp(3rem,7vw,6rem)]">
             <div className="flex items-baseline justify-between gap-6 border-b border-inchiostro pb-4">
               <h2 id={`gruppo-${group.key}`} className="font-serif text-[clamp(1.7rem,3vw,2.4rem)]">
                 {group.title}
@@ -97,12 +95,10 @@ export function RoomsPage({ lang }: { lang: Locale }) {
               );
             })}
           </section>
-          </Suspense>
         );
       })}
 
       {/* Dotazioni verificate (scheda Booking.com del 15/11/2026) */}
-      <Suspense>
       <section aria-labelledby="dotazioni" className="relative mt-6 bg-carta">
         <Scallop color="var(--color-crema)" />
         <div className="contenitore sezione grid gap-x-16 gap-y-12 md:grid-cols-2">
@@ -140,7 +136,6 @@ export function RoomsPage({ lang }: { lang: Locale }) {
           </Reveal>
         </div>
       </section>
-      </Suspense>
     </>
   );
 }

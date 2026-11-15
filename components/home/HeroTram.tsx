@@ -27,7 +27,9 @@ const C = {
 
 const H = 140;
 const DECK = 112;
-const TRAM_START = 146;
+// Il tram parte dall'inizio del ponte, non dalla porta della locanda:
+// la fermata più vicina alla locanda non è nota.
+const TRAM_START = 200;
 const TRAM_W = 74;
 
 function geometry(width: number) {

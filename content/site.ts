@@ -17,9 +17,14 @@ export const site = {
   shortName: "NLB",
   /** Dominio definitivo: DA CONFERMARE. Si imposta con NEXT_PUBLIC_SITE_URL. */
   url: (
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    "https://www.nuovalocandabelvedere.example"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.nuovalocandabelvedere.example"
   ).replace(/\/$/, ""),
+  /**
+   * Il sito chiede ai motori di ricerca di NON indicizzarlo finché non è
+   * impostato l'indirizzo vero (NEXT_PUBLIC_SITE_URL). Così una pubblicazione
+   * di prova, con dati ancora da confermare, non finisce su Google.
+   */
+  indexable: Boolean(process.env.NEXT_PUBLIC_SITE_URL),
   locality: "Marghera",
   city: "Venezia",
   province: "VE",

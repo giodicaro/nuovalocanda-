@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nuova Locanda Belvedere — sito web
 
-## Getting Started
+Sito bilingue (italiano e inglese) di una locanda di otto camere a Marghera, Venezia.
+Serve a ricevere richieste di prenotazione dirette.
 
-First, run the development server:
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4.
+
+## Avvio
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Il sito si apre su `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Per provare la versione di produzione:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Pagine
 
-To learn more about Next.js, take a look at the following resources:
+| Pagina | Italiano | Inglese |
+|---|---|---|
+| Home | `/` | `/en` |
+| Camere | `/camere` | `/en/rooms` |
+| Venezia | `/venezia` | `/en/venice` |
+| Prenota | `/prenota` | `/en/book` |
+| Privacy | `/privacy` | `/en/privacy` |
+| Cookie | `/cookie` | `/en/cookies` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Dove si cambiano i contenuti
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Contatti, CIN, orari, punteggi:** `content/site.ts`. Un valore `null` compare nel sito come "da confermare". Per confermarlo si scrive il valore al posto di `null`.
+- **Sistemazioni:** `content/rooms.ts`.
+- **Testi:** `content/i18n/it.ts` e `content/i18n/en.ts`.
+- **Foto:** si aggiungono in `public/images/` e si registrano in `content/photos.ts`.
 
-## Deploy on Vercel
+## Variabili d'ambiente
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Copiare `.env.example` in `.env.local`. Nessun valore è obbligatorio per avviare il sito.
+Senza la chiave del servizio email, le richieste del modulo sono scritte nel log del server.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Documenti
+
+- `docs/direzione-visiva.md`: concept, palette, font, foto, domande per il titolare.
+- `docs/progress.md`: fasi, decisioni tecniche, esiti delle verifiche.
+- `AGENTS.md`: note per chi lavora sul codice con questa versione di Next.js.

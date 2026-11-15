@@ -63,7 +63,15 @@ export function RoomFacts({
       </div>
       <div className={cn(cell, "col-span-2 sm:col-span-3")}>
         <dt className={dt}>{common.beds}</dt>
-        <dd className={dd}>{room.beds[lang]}</dd>
+        <dd className={dd}>
+          {room.beds[lang]}
+          {!room.verified ? (
+            <>
+              {" "}
+              <Tbc tbc={common.tbc} tone={tone} className="font-sans text-[0.8rem]" />
+            </>
+          ) : null}
+        </dd>
       </div>
     </dl>
   );

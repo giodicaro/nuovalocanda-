@@ -235,7 +235,7 @@ export function DirectSection({ lang, dict }: Props) {
           {benefits.length
             ? benefits.map((benefit, i) => (
                 <Reveal as="li" key={benefit.title} delay={i * 110} className="border border-carta/35 p-7">
-                  <p className="font-serif text-[1.05rem] text-ocra-chiara" aria-hidden="true">
+                  <p className="font-serif text-[1.05rem] text-carta" aria-hidden="true">
                     {two(i + 1)}
                   </p>
                   <h3 className="mt-4 font-serif text-[1.6rem] leading-tight">{benefit.title}</h3>
@@ -249,7 +249,7 @@ export function DirectSection({ lang, dict }: Props) {
                   delay={i * 110}
                   className="border border-dashed border-carta/60 p-7"
                 >
-                  <p className="font-serif text-[1.05rem] text-ocra-chiara" aria-hidden="true">
+                  <p className="font-serif text-[1.05rem] text-carta" aria-hidden="true">
                     {two(i + 1)}
                   </p>
                   <h3 className="mt-4 font-serif text-[1.6rem] leading-tight" data-da-confermare="">
@@ -418,7 +418,7 @@ export function BookSection({ lang, dict }: Props) {
             <p className="mt-7 max-w-[38ch] text-[1.08rem] text-legno">{t.text}</p>
             <p className="mt-5">
               <Link prefetch={false}
-                href={href("book", lang)}
+                href={href("book", lang, "domande")}
                 className="font-medium text-mattone underline underline-offset-4 hover:text-inchiostro"
               >
                 {dict.bookPage.faqTitle} →

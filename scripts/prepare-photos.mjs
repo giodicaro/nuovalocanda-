@@ -18,10 +18,11 @@ await mkdir(out, { recursive: true });
 const jobs = [
   { from: "04-esterno-strada.jpg", to: "ingresso-insegna-alloggi.jpg" },
   // Open Graph 1200x630: stessa foto, ritaglio orizzontale.
-  { from: "04-esterno-strada.jpg", to: "og-ingresso.jpg", crop: { left: 0, top: 150, width: 1200, height: 630 } },
+  { from: "04-esterno-strada.jpg", to: "og-ingresso.jpg", crop: { left: 0, top: 8, width: 1200, height: 630 } },
   { from: "01-facciata-notte.jpg", to: "facciata-di-sera.jpg" },
-  // Solo balconcino e tenda alta: il ritaglio esclude le insegne "Bar Trattoria".
-  { from: "03-balcone.jpg", to: "balconcino-bianco.jpg", crop: { left: 290, top: 40, width: 480, height: 378 } },
+  // Solo il balconcino: il ritaglio esclude la tenda "Hotel Belvedere" e le
+  // insegne "Bar Trattoria". Il nome della struttura è Nuova Locanda Belvedere.
+  { from: "03-balcone.jpg", to: "balconcino-bianco.jpg", crop: { left: 345, top: 228, width: 380, height: 240 } },
   // Tavolo, balaustra e case di fronte.
   { from: "05-terrazza.jpg", to: "terrazza-coperta.jpg", crop: { left: 560, top: 250, width: 720, height: 607 } },
   { from: "06-reception.jpg", to: "reception-bancone.jpg" },

@@ -16,6 +16,8 @@ export function layoutMetadata(lang: Locale): Metadata {
     metadataBase: new URL(site.url),
     applicationName: site.name,
     formatDetection: { telephone: false },
+    // Senza indirizzo definitivo il sito non va indicizzato (vedi content/site.ts).
+    ...(site.indexable ? {} : { robots: { index: false, follow: false } }),
     openGraph: {
       siteName: site.name,
       type: "website",

@@ -59,10 +59,14 @@ export function Frame({
         />
       </div>
       {children}
-      <figcaption className="flex min-h-9 items-center justify-between gap-3 px-0.5 text-[0.62rem] font-medium tracking-[0.14em] text-legno uppercase sm:text-[0.68rem] sm:tracking-[0.18em]">
-        <span>{caption}</span>
-        {number ? <span aria-hidden="true">{number}</span> : null}
-      </figcaption>
+      {caption || number ? (
+        <figcaption className="flex min-h-9 items-center justify-between gap-3 px-0.5 text-[0.62rem] font-medium tracking-[0.14em] text-legno uppercase sm:text-[0.68rem] sm:tracking-[0.18em]">
+          <span>{caption}</span>
+          {number ? <span aria-hidden="true">{number}</span> : null}
+        </figcaption>
+      ) : (
+        <div aria-hidden="true" className="h-2.5" />
+      )}
     </figure>
   );
 }

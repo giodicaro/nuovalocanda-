@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { getDictionary } from "@/content/i18n";
 import { href } from "@/content/routes";
 import type { Locale } from "@/content/site";
@@ -103,7 +102,6 @@ export function VenicePage({ lang }: { lang: Locale }) {
       </section>
 
       {/* Consigli per la giornata */}
-      <Suspense>
       <section aria-labelledby="consigli" className="su-scuro relative bg-verde text-crema">
         <Scallop color="var(--color-crema)" />
         <div className="contenitore sezione [content-visibility:visible]">
@@ -126,10 +124,8 @@ export function VenicePage({ lang }: { lang: Locale }) {
           </ol>
         </div>
       </section>
-      </Suspense>
 
       {/* Dove scendere + contributo di accesso */}
-      <Suspense>
       <section className="contenitore sezione grid gap-x-16 gap-y-14 lg:grid-cols-2">
         <Reveal>
           <Label>{v.label}</Label>
@@ -170,10 +166,8 @@ export function VenicePage({ lang }: { lang: Locale }) {
           </div>
         </Reveal>
       </section>
-      </Suspense>
 
       {/* Venezia durante l'anno */}
-      <Suspense>
       <section aria-labelledby="eventi" className="relative bg-carta">
         <Scallop color="var(--color-crema)" />
         <div className="contenitore sezione">
@@ -212,7 +206,6 @@ export function VenicePage({ lang }: { lang: Locale }) {
           </Reveal>
         </div>
       </section>
-      </Suspense>
     </>
   );
 }

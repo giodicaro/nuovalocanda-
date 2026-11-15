@@ -202,7 +202,7 @@ export function Sign({
             key={i}
             aria-hidden="true"
             className={cn(
-              "grid size-8 place-items-center rounded-[5px] border-[1.5px] border-terracotta bg-carta text-[0.95rem] leading-none font-extrabold text-terracotta sm:size-9 sm:text-[1.05rem]",
+              "grid size-8 place-items-center rounded-[5px] border-[1.5px] border-terracotta bg-carta text-[0.95rem] leading-none font-extrabold text-mattone sm:size-9 sm:text-[1.05rem]",
               animated && "lettera-insegna",
             )}
             style={

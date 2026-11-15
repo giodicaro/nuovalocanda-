@@ -80,9 +80,9 @@ export function validateRequest(input: unknown, today: string): ValidationResult
   const departure = text(raw.departure);
   if (!departure) errors.departure = "required";
   else if (!isRealDate(departure)) errors.departure = "date";
-  else if (!errors.arrival && departure <= arrival) errors.departure = "order";
+  else if (isRealDate(arrival) && departure <= arrival) errors.departure = "order";
 
-  const guests = Number(raw.guests);
+  const guests = typeof raw.guests === "number" || typeof raw.guests === "string" ? Number(raw.guests) : NaN;
   if (!Number.isInteger(guests) || guests < 1 || guests > 12) errors.guests = "guests";
 
   const message = text(raw.message);

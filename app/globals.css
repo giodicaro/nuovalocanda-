@@ -202,7 +202,7 @@
   }
   100% {
     background: var(--color-carta);
-    color: var(--color-terracotta);
+    color: var(--color-mattone);
     border-color: var(--color-terracotta);
   }
 }
@@ -361,6 +361,15 @@
 .mosaico .tessere {
   animation: tessere 0.6s ease-out both;
   animation-delay: var(--ritardo, 0ms);
+}
+
+/* Pulsante "Ferma le animazioni" nell'hero: mette in pausa i movimenti
+   che non finiscono da soli (tram, tenda, insegna, anello sulla mappa). */
+html[data-animazioni-ferme] .tram,
+html[data-animazioni-ferme] .tenda-brezza,
+html[data-animazioni-ferme] .lettera-insegna,
+html[data-animazioni-ferme] .fanale {
+  animation-play-state: paused;
 }
 
 /* ---------- Movimento ridotto: solo dissolvenze brevi ---------- */

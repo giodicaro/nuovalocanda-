@@ -13,7 +13,7 @@ export const it = {
     rooms: {
       title: "Camere — Nuova Locanda Belvedere, Marghera Venezia",
       description:
-        "Tutte le sistemazioni della locanda: singole, matrimoniali, doppie, triple, quadruple e camerata condivisa. Per ognuna ospiti, letti, superficie e tipo di bagno.",
+        "Tutte le sistemazioni della locanda: singole, matrimoniali, doppie, triple e quadruple. Per ognuna ospiti, letti, superficie e tipo di bagno.",
     },
     venice: {
       title: "Come arrivare a Venezia da Marghera — Nuova Locanda Belvedere",
@@ -46,6 +46,8 @@ export const it = {
     main: "Navigazione principale",
     language: "Lingua",
     switchTo: "English",
+    pauseMotion: "Ferma le animazioni",
+    playMotion: "Riavvia le animazioni",
     homeAria: "Nuova Locanda Belvedere, pagina iniziale",
   },
 
@@ -59,7 +61,7 @@ export const it = {
     beds: "Letti",
     area: "Superficie",
     bath: "Bagno",
-    bathPrivate: "Privato, in camera",
+    bathPrivate: "Privato",
     bathShared: "In comune",
     photoMissing: "Foto da fornire",
     photoTbc: "Abbinamento foto da confermare",
@@ -72,7 +74,7 @@ export const it = {
     label: "Marghera · Venezia",
     title1: "Una stanza a Marghera.",
     title2: "Venezia, appena oltre il ponte.",
-    text: "Otto camere semplici e pulite, sulla terraferma. La mattina partite per Venezia in tram, in autobus o in treno. La sera tornate dove qualcuno vi aspetta.",
+    text: "Otto camere semplici e pulite, sulla terraferma. La mattina partite per Venezia in tram, in autobus o in treno. La sera tornate a casa.",
     ctaSecondary: "Guardate le sistemazioni",
     sign: "Alloggi",
     photoCaption: "L'ingresso, all'angolo",
@@ -80,16 +82,16 @@ export const it = {
     tramBridge: "Ponte della Libertà",
     tramTo: "Venezia",
     tramAlt:
-      "Illustrazione: un tram parte dalla locanda arancione di Marghera, attraversa il ponte sulla laguna e arriva a Venezia",
+      "Illustrazione decorativa: un tram attraversa il Ponte della Libertà, dalla terraferma verso Venezia",
   },
 
   manifesto: {
     label: "L'accoglienza",
     title1: "Qui la porta ve la apre",
     title2: "una persona.",
-    p1: "Chi è stato qui parla prima di tutto delle persone che lo hanno accolto. Al bancone trovate qualcuno che vi dà la chiave e vi spiega come si arriva a Venezia.",
+    p1: "Chi è stato qui parla prima di tutto delle persone che lo hanno accolto. Alla reception potete chiedere come si arriva a Venezia e da dove conviene partire.",
     p2: "È una locanda di una volta. La facciata arancione, la tenda sopra la porta, l'insegna «Alloggi» che si vede dalla strada. Nella hall c'è una grande mappa di Venezia: è il posto giusto per decidere il giro della giornata.",
-    aside: "Semplice, pulita, onesta nei prezzi.",
+    aside: "Semplice, pulita, senza fronzoli.",
     captionReception: "La reception",
     captionMosaic: "Il nostro biglietto",
   },
@@ -99,7 +101,7 @@ export const it = {
     title1: "Diteci come viaggiate.",
     title2: "Vi diciamo dove dormire.",
     intro:
-      "Camere singole, doppie, triple e quadruple, più una camerata condivisa. Ogni scheda dice subito quanti letti ci sono e se il bagno è in camera o in comune.",
+      "Camere singole, doppie, triple e quadruple. Ogni scheda dice subito quanti letti ci sono e se il bagno è privato o in comune.",
     filterLabel: "Tipo di viaggio",
     trips: { solo: "Da solo", duo: "In due", group: "In gruppo" },
     prev: "Sistemazione precedente",
@@ -118,7 +120,7 @@ export const it = {
     ways: [
       {
         name: "Tram",
-        text: "La rete ACTV ha due linee: la T2 collega Marghera a Mestre Centro, la T1 collega Mestre a Venezia, Piazzale Roma.",
+        text: "La rete ACTV ha due linee di tram. La T2 collega Marghera a Mestre Centro. La T1 collega Favaro Veneto a Venezia, Piazzale Roma.",
         tbc: "Fermata più vicina e tempi",
       },
       {
@@ -164,7 +166,7 @@ export const it = {
     label: "Prenotare da qui",
     title1: "Senza intermediari.",
     title2: "Parlate con noi.",
-    text: "Quando scrivete da questo sito, la richiesta arriva alla locanda e non a un portale. Vi risponde chi poi vi apre la porta.",
+    text: "Quando scrivete da questo sito, la richiesta arriva alla locanda e non a un portale. Vi risponde chi lavora qui.",
     placeholderTitle: "Vantaggio da confermare",
     placeholderText:
       "Qui va un vantaggio reale per chi prenota direttamente. Lo indica il titolare.",
@@ -240,15 +242,13 @@ export const it = {
     title1: "Tutte le sistemazioni,",
     title2: "una per una.",
     intro:
-      "Per ogni sistemazione trovate ospiti, letti, superficie e tipo di bagno. I prezzi dipendono dalle date: chiedeteli con una richiesta, vi rispondiamo noi.",
+      "Per ogni sistemazione trovate ospiti, letti, superficie e tipo di bagno. I prezzi non sono pubblicati qui: chiedeteli con una richiesta, vi rispondiamo noi.",
     groupPrivate: "Camere private",
     groupDorm: "Camerata condivisa",
-    amenitiesTitle: "In ogni camera",
+    amenitiesTitle: "Nelle camere",
     bathTitle: "Nei bagni, privati e in comune",
     dormWarning:
       "Sistemazione da confermare con il titolare: il numero di letti e le dotazioni non sono ancora verificati.",
-    sharedNote: "Il bagno è in comune con altri ospiti.",
-    privateNote: "Il bagno è in camera.",
     price: "Prezzo",
     priceTbc: "Su richiesta",
   },
@@ -258,7 +258,7 @@ export const it = {
     title1: "Da Marghera a Venezia,",
     title2: "senza perdersi.",
     intro:
-      "Dormire a Marghera vuol dire avere Venezia a portata di mano e tornare, la sera, in un posto tranquillo. Qui trovate come arrivarci e che cosa sapere prima di partire.",
+      "Dormire a Marghera vuol dire avere Venezia a portata di mano e tornare, la sera, sulla terraferma. Qui trovate come arrivarci e che cosa sapere prima di partire.",
     waysTitle: "Come arrivare",
     waysNote:
       "Linee, fermate e tempi dalla locanda sono da confermare. Per orari e tariffe aggiornati consultate i siti ufficiali.",
@@ -322,7 +322,7 @@ export const it = {
       {
         when: "21 novembre",
         name: "Madonna della Salute",
-        text: "La festa più sentita dai veneziani.",
+        text: "Il pellegrinaggio alla basilica della Salute.",
       },
     ],
     cta: "Scegliete la stanza",
@@ -355,8 +355,8 @@ export const it = {
         tbc: "Modalità di pagamento",
       },
       {
-        q: "Il bagno è in camera?",
-        a: "Dipende dalla sistemazione, e ogni scheda lo dice. «Privato» vuol dire in camera. «In comune» vuol dire condiviso con altri ospiti.",
+        q: "Il bagno è privato?",
+        a: "Dipende dalla sistemazione, e ogni scheda lo dice. «Privato» vuol dire a uso esclusivo della vostra camera. «In comune» vuol dire condiviso con altri ospiti.",
       },
       {
         q: "Ci sono scale?",
@@ -435,6 +435,7 @@ export const it = {
           h: "Quali dati raccogliamo",
           p: [
             "Raccogliamo solo i dati che scrivete nel modulo di richiesta: nome, email, telefono se lo indicate, date del soggiorno, numero di ospiti, sistemazione scelta e messaggio.",
+            "Per proteggere il modulo dagli abusi, il server tiene per pochi minuti l'indirizzo IP di chi invia una richiesta. La richiesta può comparire nei registri tecnici del server.",
             "Il sito non usa strumenti di statistica né di profilazione.",
           ],
         },

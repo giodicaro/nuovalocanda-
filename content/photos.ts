@@ -46,10 +46,10 @@ export const photos = {
   },
   balconcino: {
     src: balconcino,
-    maxWidth: 340,
+    maxWidth: 250,
     alt: {
-      it: "Il balconcino bianco traforato sulla facciata arancione, sotto una tenda crema",
-      en: "The white fretwork balcony on the orange facade, under a cream awning",
+      it: "Il balconcino bianco traforato sulla facciata arancione",
+      en: "The white fretwork balcony on the orange facade",
     },
   },
   terrazza: {
@@ -112,8 +112,8 @@ export const photos = {
     src: dueLettiBagno,
     maxWidth: 320,
     alt: {
-      it: "Camera con due letti singoli, copriletti marroni e la porta del bagno in camera",
-      en: "Room with two single beds, brown bedspreads and the door to the en-suite bathroom",
+      it: "Camera con due letti singoli, copriletti marroni e la porta aperta sul bagno",
+      en: "Room with two single beds, brown bedspreads and the open door to the bathroom",
     },
   },
   dueLettiParquet: {
@@ -136,8 +136,8 @@ export const photos = {
     src: bagno,
     maxWidth: 320,
     alt: {
-      it: "Un bagno in camera con lavabo, specchio e mensola in vetro",
-      en: "An en-suite bathroom with washbasin, mirror and glass shelf",
+      it: "Un bagno con lavabo, specchio e mensola in vetro",
+      en: "A bathroom with washbasin, mirror and glass shelf",
     },
   },
 } satisfies Record<string, Photo>;

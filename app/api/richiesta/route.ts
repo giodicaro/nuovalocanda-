@@ -10,20 +10,25 @@ import { todayInVenice, validateRequest, type RequestData } from "@/lib/request"
  * Invio email: se in .env ci sono RESEND_API_KEY, REQUEST_TO_EMAIL e
  * REQUEST_FROM_EMAIL la richiesta parte con il servizio Resend.
  * Senza chiave la richiesta è scritta nel log del server e l'ospite
- * vede comunque la conferma.
+ * vede comunque la conferma (comportamento chiesto per questa versione).
+ * ATTENZIONE: prima della messa online le tre variabili vanno impostate,
+ * altrimenti le richieste restano solo nel log e nessuno le legge.
  */
 
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
+// Se l'hosting non comunica l'indirizzo IP, tutti gli ospiti finiscono nello
+// stesso gruppo: qui il limite è più alto, per non bloccare ospiti veri.
+const MAX_UNKNOWN_PER_WINDOW = 40;
 const MAX_BODY_BYTES = 10_000;
 
 // Limite semplice in memoria: basta per un solo server.
 // Con più istanze va spostato su un archivio condiviso.
 const hits = new Map<string, number[]>();
 
-function tooManyRequests(ip: string, now: number) {
+function tooManyRequests(ip: string, now: number, max: number) {
   const recent = (hits.get(ip) ?? []).filter((time) => now - time < WINDOW_MS);
-  if (recent.length >= MAX_PER_WINDOW) {
+  if (recent.length >= max) {
     hits.set(ip, recent);
     return true;
   }
@@ -84,6 +89,9 @@ async function deliver(data: RequestData) {
 }
 
 export async function POST(request: Request) {
+  if (Number(request.headers.get("content-length") ?? 0) > MAX_BODY_BYTES) {
+    return Response.json({ ok: false }, { status: 413 });
+  }
   const raw = await request.text();
   if (raw.length > MAX_BODY_BYTES) {
     return Response.json({ ok: false }, { status: 413 });
@@ -98,13 +106,15 @@ export async function POST(request: Request) {
 
   // Campo trappola: un ospite vero non lo vede e non lo compila.
   // Si risponde "ok" per non dare indizi a chi invia spam.
-  const trap = (body as { website?: unknown } | null)?.website;
+  const trap = (body as { trap?: unknown } | null)?.trap;
   if (typeof trap === "string" && trap.trim() !== "") {
     return Response.json({ ok: true });
   }
 
-  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "sconosciuto";
-  if (tooManyRequests(ip, Date.now())) {
+  // DA VERIFICARE CON L'HOSTING: quale intestazione riporta l'IP reale.
+  const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "";
+  const limit = ip ? MAX_PER_WINDOW : MAX_UNKNOWN_PER_WINDOW;
+  if (tooManyRequests(ip || "sconosciuto", Date.now(), limit)) {
     return Response.json({ ok: false }, { status: 429, headers: { "Retry-After": "600" } });
   }
 

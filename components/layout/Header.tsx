@@ -175,6 +175,9 @@ export function Header({ lang, nav }: { lang: Locale; nav: Dictionary["nav"] }) 
       <div
         id="menu-mobile"
         ref={menuRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={nav.menu}
         hidden={!open}
         className="su-scuro fixed inset-0 z-50 flex h-[100svh] flex-col justify-between overflow-y-auto bg-verde px-[clamp(1.25rem,4vw,3.5rem)] pt-28 pb-10 text-crema md:hidden"
       >

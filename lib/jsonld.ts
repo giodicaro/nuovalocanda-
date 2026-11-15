@@ -19,12 +19,11 @@ export function lodgingJsonLd(lang: Locale) {
     url: site.url + routes.home[lang],
     image: `${site.url}/images/og-ingresso.jpg`,
     numberOfRooms: site.roomCount,
-    availableLanguage: ["it", "en"],
     address: {
       "@type": "PostalAddress",
       ...(contacts.address ? { streetAddress: contacts.address } : {}),
       ...(contacts.postalCode ? { postalCode: contacts.postalCode } : {}),
-      addressLocality: `${site.locality}, ${site.city}`,
+      addressLocality: site.city,
       addressRegion: site.province,
       addressCountry: site.country,
     },

@@ -14,7 +14,7 @@ export type SendResult =
   | { ok: false; reason: "rate" | "generic" };
 
 export async function sendRequest(
-  data: RequestData & { /** Campo trappola anti-spam: deve restare vuoto. */ website: string },
+  data: RequestData & { /** Campo trappola anti-spam: deve restare vuoto. */ trap: string },
 ): Promise<SendResult> {
   try {
     const response = await fetch("/api/richiesta", {

@@ -23,7 +23,7 @@ export function PageIntro({
       <h1 className="mt-5 text-[clamp(2.5rem,6vw,5.4rem)] leading-none">
         <span className="riga-titolo">
           <span style={delay(180)}>{line1}</span>
-        </span>
+        </span>{" "}
         <span className="riga-titolo">
           <span className="text-terracotta italic" style={delay(330)}>
             {line2}

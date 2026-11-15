@@ -34,7 +34,7 @@ const roomFromUrl = () => new URLSearchParams(window.location.search).get("camer
 const roomOnServer = () => "";
 
 const inputClass =
-  "block min-h-12 w-full rounded-none border-0 border-b-[1.5px] border-legno/45 bg-transparent px-0 py-2 text-[1.05rem] text-inchiostro transition-colors duration-300 placeholder:text-legno/60 hover:border-legno focus:border-mattone aria-[invalid=true]:border-mattone";
+  "block min-h-12 w-full rounded-none border-0 border-b-[1.5px] border-legno/80 bg-transparent px-0 py-2 text-[1.05rem] text-inchiostro transition-colors duration-300 placeholder:text-legno/60 hover:border-legno focus:border-mattone aria-[invalid=true]:border-mattone";
 
 function Field({
   id,
@@ -142,7 +142,7 @@ export function RequestForm({
 
     setErrors({});
     setStatus("sending");
-    const sent = await sendRequest({ ...result.data, website: String(form.get("website") ?? "") });
+    const sent = await sendRequest({ ...result.data, trap: String(form.get("nlb_lasciare_vuoto") ?? "") });
 
     if (sent.ok) {
       setStatus("sent");
@@ -309,6 +309,7 @@ export function RequestForm({
               {rooms.map((r) => (
                 <option key={r.slug} value={r.slug}>
                   {r.name[lang]}
+                  {r.verified ? "" : ` (${common.tbc})`}
                 </option>
               ))}
             </select>
@@ -334,8 +335,8 @@ export function RequestForm({
 
           {/* Campo trappola anti-spam: nascosto a persone e lettori di schermo. */}
           <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-            <label htmlFor={id("website")}>Website</label>
-            <input id={id("website")} name="website" type="text" tabIndex={-1} autoComplete="off" />
+            <label htmlFor={id("trappola")}>Lasciare vuoto</label>
+            <input id={id("trappola")} name="nlb_lasciare_vuoto" type="text" tabIndex={-1} autoComplete="off" />
           </div>
 
           <div className="sm:col-span-2">

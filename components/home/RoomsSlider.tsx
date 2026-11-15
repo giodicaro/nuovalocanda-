@@ -57,7 +57,12 @@ export function RoomsSlider({
   };
 
   const onTripKey = (event: KeyboardEvent<HTMLButtonElement>, i: number) => {
-    const step = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
+    const step =
+      event.key === "ArrowRight" || event.key === "ArrowDown"
+        ? 1
+        : event.key === "ArrowLeft" || event.key === "ArrowUp"
+          ? -1
+          : 0;
     if (!step) return;
     event.preventDefault();
     const next = trips[(i + step + trips.length) % trips.length];
@@ -143,7 +148,7 @@ export function RoomsSlider({
                 <span
                   className={cn(
                     "block h-[3px] rounded-full transition-all duration-500 ease-calmo",
-                    i === position ? "w-9 bg-ocra" : "w-5 bg-crema/40",
+                    i === position ? "w-9 bg-ocra" : "w-5 bg-crema/70",
                   )}
                 />
               </button>
