@@ -9,10 +9,10 @@ export function BookPage({ lang }: { lang: Locale }) {
   const t = dict.bookPage;
   const tbc = dict.common.tbc;
 
-  // Orari e regole: tutti DA CONFERMARE in content/site.ts → stay.
+  // Orari e regole: in content/site.ts → stay. `null` = da confermare.
   const info: { label: string; value: string | null }[] = [
-    { label: t.info.checkIn, value: stay.checkIn },
-    { label: t.info.checkOut, value: stay.checkOut },
+    { label: t.info.checkIn, value: stay.checkIn?.[lang] ?? null },
+    { label: t.info.checkOut, value: stay.checkOut?.[lang] ?? null },
     { label: t.info.reception, value: stay.receptionHours },
     { label: t.info.breakfast, value: stay.breakfast?.[lang] ?? null },
     { label: t.info.parking, value: stay.parking?.[lang] ?? null },

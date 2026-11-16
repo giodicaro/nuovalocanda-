@@ -130,8 +130,8 @@ export const it = {
       },
       {
         name: "Treno",
-        text: "Dalla stazione di Venezia Mestre i treni regionali arrivano a Venezia Santa Lucia in circa 10–15 minuti (tempo indicativo).",
-        tbc: "Distanza dalla stazione",
+        text: "La stazione di Venezia Mestre è a circa 10–12 minuti a piedi dalla locanda. Da lì i treni regionali arrivano a Venezia Santa Lucia in circa 10–15 minuti (tempo indicativo).",
+        tbc: "",
       },
     ],
     placesTitle: "Dove scendere, che cosa vedere",
@@ -179,8 +179,14 @@ export const it = {
     title2: "un balconcino bianco.",
     text: "La hall ha le pareti gialle e il soffitto in legno. C'è una terrazza coperta, con un tavolo e una balaustra bianca affacciata sulla strada.",
     amenitiesTitle: "Che cosa trovate",
-    amenities: ["WiFi gratuito", "Aria condizionata e riscaldamento in camera", "Reception"],
-    tbcItems: ["Colazione", "Parcheggio", "Deposito bagagli"],
+    amenities: [
+      "WiFi gratuito",
+      "Aria condizionata e riscaldamento in camera",
+      "Reception",
+      "Parcheggio privato gratuito",
+      "Deposito bagagli",
+    ],
+    tbcItems: ["Colazione"],
     stairsTitle: "Gradini e scale",
     stairs:
       "Nella casa ci sono gradini e scale. Se per voi sono un problema, scriveteci prima di prenotare: vi diciamo com'è la stanza.",

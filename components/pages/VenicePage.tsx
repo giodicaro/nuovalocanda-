@@ -79,9 +79,11 @@ export function VenicePage({ lang }: { lang: Locale }) {
                   <div>
                     <h3 className="font-serif text-[2rem] leading-none">{way.name}</h3>
                     <p className="mt-3 max-w-[52ch] text-legno">{way.text}</p>
-                    <p className="mt-3 text-[0.92rem]">
-                      <Tbc label={way.tbc} tbc={dict.common.tbc} />
-                    </p>
+                    {way.tbc ? (
+                      <p className="mt-3 text-[0.92rem]">
+                        <Tbc label={way.tbc} tbc={dict.common.tbc} />
+                      </p>
+                    ) : null}
                   </div>
                 </Reveal>
               ))}

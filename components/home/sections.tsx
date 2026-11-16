@@ -174,9 +174,11 @@ export function VeniceSection({ lang, dict }: Props) {
               </p>
               <h3 className="mt-5 font-serif text-[2rem] leading-none">{way.name}</h3>
               <p className="mt-4 text-legno">{way.text}</p>
-              <p className="mt-4 text-[0.92rem]">
-                <Tbc label={way.tbc} tbc={dict.common.tbc} />
-              </p>
+              {way.tbc ? (
+                <p className="mt-4 text-[0.92rem]">
+                  <Tbc label={way.tbc} tbc={dict.common.tbc} />
+                </p>
+              ) : null}
             </Reveal>
           ))}
         </ol>

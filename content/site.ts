@@ -34,7 +34,13 @@ export const site = {
   roomCount: 8,
 } as const;
 
-/** Contatti e dati legali: tutti DA CONFERMARE CON IL TITOLARE. */
+/**
+ * Contatti e dati legali.
+ * Via, CAP e telefono: confermati da più fonti pubbliche (Google Maps,
+ * Booking.com, altri portali), letti il 16/11/2026.
+ * Civico DA CONFERMARE: Google scrive "1/B", i portali "1". Per ora non c'è.
+ * Il resto è DA CONFERMARE CON IL TITOLARE.
+ */
 export const contacts: {
   address: string | null;
   postalCode: string | null;
@@ -47,9 +53,9 @@ export const contacts: {
   vatNumber: string | null;
   legalName: string | null;
 } = {
-  address: null,
-  postalCode: null,
-  phone: null,
+  address: "Via Carlo Mezzacapo",
+  postalCode: "30175",
+  phone: "+39 041 926596",
   email: null,
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || null,
   cin: null,
@@ -57,20 +63,29 @@ export const contacts: {
   legalName: null,
 };
 
-/** Soggiorno: tutto DA CONFERMARE CON IL TITOLARE. */
+/**
+ * Soggiorno.
+ * Inizio check-in, check-out e parcheggio: confermati da più fonti
+ * pubbliche (Booking.com, Hostelworld, Expedia, Google), 16/11/2026.
+ * L'ora di fine check-in non coincide tra le fonti: DA CONFERMARE.
+ * Il resto è DA CONFERMARE CON IL TITOLARE.
+ */
 export const stay: {
-  checkIn: string | null;
-  checkOut: string | null;
+  checkIn: Localized | null;
+  checkOut: Localized | null;
   receptionHours: string | null;
   breakfast: Localized | null;
   parking: Localized | null;
   houseRules: Localized<string[]> | null;
 } = {
-  checkIn: null,
-  checkOut: null,
+  checkIn: { it: "dalle 14:00", en: "from 2:00 pm" },
+  checkOut: { it: "entro le 10:00", en: "by 10:00 am" },
   receptionHours: null,
   breakfast: null,
-  parking: null,
+  parking: {
+    it: "Privato e gratuito, nella struttura",
+    en: "Private and free, on site",
+  },
   houseRules: null,
 };
 

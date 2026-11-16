@@ -128,8 +128,8 @@ export const en: Dictionary = {
       },
       {
         name: "Train",
-        text: "From Venezia Mestre station, regional trains reach Venezia Santa Lucia in about 10–15 minutes (approximate time).",
-        tbc: "Distance from the station",
+        text: "Venezia Mestre station is about a 10–12 minute walk from the inn. From there, regional trains reach Venezia Santa Lucia in about 10–15 minutes (approximate time).",
+        tbc: "",
       },
     ],
     placesTitle: "Where to get off, what to see",
@@ -177,8 +177,14 @@ export const en: Dictionary = {
     title2: "a small white balcony.",
     text: "The hall has yellow walls and a wooden ceiling. There is a covered terrace, with a table and a white balustrade overlooking the street.",
     amenitiesTitle: "What you'll find",
-    amenities: ["Free WiFi", "Air conditioning and heating in the rooms", "Reception"],
-    tbcItems: ["Breakfast", "Parking", "Luggage storage"],
+    amenities: [
+      "Free WiFi",
+      "Air conditioning and heating in the rooms",
+      "Reception",
+      "Free private parking",
+      "Luggage storage",
+    ],
+    tbcItems: ["Breakfast"],
     stairsTitle: "Steps and stairs",
     stairs:
       "There are steps and stairs in the house. If they are a problem for you, write to us before booking: we will tell you what the room is like.",
