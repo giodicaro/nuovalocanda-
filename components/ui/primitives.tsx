@@ -18,9 +18,12 @@ export function Reveal({
   className?: string;
   as?: "div" | "section" | "li" | "article" | "figure";
 }) {
+  // suppressHydrationWarning: ClientEffects può scrivere data-comparsa su
+  // questo elemento prima che React lo attivi. Vale solo per i suoi attributi.
   return (
     <Tag
       data-reveal=""
+      suppressHydrationWarning
       className={className}
       style={delay ? ({ "--ritardo": `${delay}ms` } as CSSProperties) : undefined}
     >
