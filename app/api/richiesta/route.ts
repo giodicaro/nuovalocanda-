@@ -9,10 +9,9 @@ import { todayInVenice, validateRequest, type RequestData } from "@/lib/request"
  *
  * Invio email: se in .env ci sono RESEND_API_KEY, REQUEST_TO_EMAIL e
  * REQUEST_FROM_EMAIL la richiesta parte con il servizio Resend.
- * Senza chiave la richiesta è scritta nel log del server e l'ospite
- * vede comunque la conferma (comportamento chiesto per questa versione).
- * ATTENZIONE: prima della messa online le tre variabili vanno impostate,
- * altrimenti le richieste restano solo nel log e nessuno le legge.
+ * Senza le tre variabili la richiesta NON viene accettata: risposta 503,
+ * così l'ospite non crede di averla inviata e il modulo gli propone il
+ * telefono. Nel log va solo una riga di avviso, mai i dati dell'ospite.
  */
 
 const WINDOW_MS = 10 * 60 * 1000;
@@ -61,16 +60,7 @@ function emailText(data: RequestData) {
   ].join("\n");
 }
 
-async function deliver(data: RequestData) {
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.REQUEST_TO_EMAIL;
-  const from = process.env.REQUEST_FROM_EMAIL;
-
-  if (!apiKey || !to || !from) {
-    console.info("[richiesta] Email non configurata: richiesta registrata nel log.\n" + emailText(data));
-    return true;
-  }
-
+async function deliver(data: RequestData, apiKey: string, to: string, from: string) {
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
@@ -123,8 +113,16 @@ export async function POST(request: Request) {
     return Response.json({ ok: false, errors: result.errors }, { status: 422 });
   }
 
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.REQUEST_TO_EMAIL;
+  const from = process.env.REQUEST_FROM_EMAIL;
+  if (!apiKey || !to || !from) {
+    console.warn("[richiesta] Email non configurata: richiesta rifiutata con 503.");
+    return Response.json({ ok: false }, { status: 503 });
+  }
+
   try {
-    const sent = await deliver(result.data);
+    const sent = await deliver(result.data, apiKey, to, from);
     if (!sent) return Response.json({ ok: false }, { status: 502 });
   } catch (error) {
     console.error("[richiesta] Errore durante l'invio:", error);

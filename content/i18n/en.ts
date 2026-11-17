@@ -412,6 +412,7 @@ export const en: Dictionary = {
       tooLong: "The text is too long.",
       rate: "Too many requests in a short time. Please try again in a few minutes.",
       generic: "We could not send your request. Please try again shortly.",
+      callUs: "Or call us:",
     },
     whatsapp: "Write on WhatsApp",
     whatsappTbc: "WhatsApp: number to be confirmed",

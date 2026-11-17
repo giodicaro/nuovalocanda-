@@ -211,6 +211,15 @@ export function RequestForm({
               className="mt-6 border-l-[3px] border-mattone bg-crema px-4 py-3 text-[0.95rem] font-medium text-mattone"
             >
               {failure ? t.errors[failure] : t.errors.summary}
+              {failure === "generic" && contacts.phone ? (
+                <>
+                  {" "}
+                  {t.errors.callUs}{" "}
+                  <a className="whitespace-nowrap underline" href={`tel:${contacts.phone.replace(/\s/g, "")}`}>
+                    {contacts.phone}
+                  </a>
+                </>
+              ) : null}
             </p>
           ) : null}
         </div>

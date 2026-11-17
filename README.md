@@ -42,7 +42,7 @@ npm run start
 ## Variabili d'ambiente
 
 Copiare `.env.example` in `.env.local`. Nessun valore è obbligatorio per avviare il sito.
-Senza la chiave del servizio email, le richieste del modulo sono scritte nel log del server.
+Senza la chiave del servizio email il modulo non accetta richieste: risponde con un errore e propone il telefono. I dati degli ospiti non finiscono mai nel log.
 
 ## Documenti
 

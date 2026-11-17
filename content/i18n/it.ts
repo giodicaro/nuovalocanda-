@@ -414,6 +414,7 @@ export const it = {
       tooLong: "Il testo è troppo lungo.",
       rate: "Troppe richieste in poco tempo. Riprovate tra qualche minuto.",
       generic: "Non siamo riusciti a inviare la richiesta. Riprovate tra poco.",
+      callUs: "Oppure telefonateci:",
     },
     whatsapp: "Scrivete su WhatsApp",
     whatsappTbc: "WhatsApp: numero da confermare",
