@@ -509,4 +509,16 @@ export const en: Dictionary = {
       ],
     },
   },
+
+  notFound: {
+    metaTitle: "Page not found",
+    label: "Error 404",
+    title1: "This page",
+    title2: "doesn't exist.",
+    text: "The address may be wrong, or the page may have moved. From here you can go back to the site or send us a request.",
+    home: "Back to the home page",
+    rooms: "See the rooms",
+    book: "Check availability",
+    call: "Would you rather call?",
+  },
 };

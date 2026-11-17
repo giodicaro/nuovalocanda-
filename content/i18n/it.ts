@@ -511,6 +511,18 @@ export const it = {
       ],
     },
   },
+
+  notFound: {
+    metaTitle: "Pagina non trovata",
+    label: "Errore 404",
+    title1: "Questa pagina",
+    title2: "non c'è.",
+    text: "Forse l'indirizzo è sbagliato o la pagina è stata spostata. Da qui potete tornare al sito o scriverci per una richiesta.",
+    home: "Torna alla home",
+    rooms: "Vedi le camere",
+    book: "Verifica disponibilità",
+    call: "Preferite telefonare?",
+  },
 };
 
 export type Dictionary = typeof it;
