@@ -119,7 +119,7 @@ export const en: Dictionary = {
       bus: {
         name: "Bus",
         lead: "Goes straight to Piazzale Roma, no changes, from early morning until after midnight.",
-        line: "Line {lines}, heading {direction}",
+        line: "{lines}, heading {direction}",
       },
       tram: {
         name: "Tram",

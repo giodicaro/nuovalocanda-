@@ -15,9 +15,9 @@ import { rooms } from "@/content/rooms";
 import { RoomSlide, slideGridClass } from "@/components/rooms/RoomSlide";
 import { cn } from "@/lib/cn";
 import { FormIsland, RoomsIsland } from "./Islands";
-import { MosaicMap } from "./MosaicMap";
 import { ways } from "@/content/transport";
 import { chipLabel, LineChip, WaySummary } from "@/components/venice/transport-ui";
+import { RouteMap } from "@/components/venice/RouteMap";
 
 type Props = { lang: Locale; dict: Dictionary };
 
@@ -162,7 +162,7 @@ export function VeniceSection({ lang, dict }: Props) {
         </div>
 
         <Reveal className="mt-12 lg:mt-16">
-          <MosaicMap t={t} />
+          <RouteMap dict={dict} />
         </Reveal>
 
         {/* Dati, fonti e date di verifica: content/transport.ts. Qui solo il

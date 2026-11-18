@@ -1,10 +1,10 @@
 import { getDictionary } from "@/content/i18n";
 import { href } from "@/content/routes";
 import type { Locale } from "@/content/site";
-import { MosaicMap } from "@/components/home/MosaicMap";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { ButtonLink, Label, Reveal, Scallop } from "@/components/ui/primitives";
 import { ticketLines, WayDetails } from "@/components/venice/transport-ui";
+import { RouteMap } from "@/components/venice/RouteMap";
 import { sources, ways } from "@/content/transport";
 
 const two = (n: number) => String(n).padStart(2, "0");
@@ -47,7 +47,7 @@ export function VenicePage({ lang }: { lang: Locale }) {
       {/* Come arrivare */}
       <section aria-labelledby="come-arrivare" className="contenitore pb-[clamp(4rem,9vw,8rem)]">
         <Reveal>
-          <MosaicMap t={v} />
+          <RouteMap dict={dict} />
         </Reveal>
 
         <div className="mt-[clamp(3rem,6vw,5rem)] grid gap-x-16 gap-y-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)]">

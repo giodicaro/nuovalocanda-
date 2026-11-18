@@ -122,7 +122,7 @@ export const it = {
       bus: {
         name: "Autobus",
         lead: "Va diretto a Piazzale Roma, senza cambi, dalla mattina presto fino a dopo mezzanotte.",
-        line: "Linea {lines}, direzione {direction}",
+        line: "{lines}, direzione {direction}",
       },
       tram: {
         name: "Tram",
