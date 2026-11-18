@@ -18,6 +18,9 @@
   --color-verde-scuro: #173f30;
   --color-legno: #6b4a32; /* 6,88 su crema */
   --color-inchiostro: #221e1a;
+  /* Mappa dei trasporti (vedi docs/direzione-visiva.md) */
+  --color-laguna: #d3e3df; /* acqua: inchiostro 12,47, legno 5,97 */
+  --color-canale: #2b5d86; /* linea del tram: 5,25 su laguna, 5,54 su crema; carta su canale 6,70 */
 
   --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-figtree), "Segoe UI", system-ui, sans-serif;

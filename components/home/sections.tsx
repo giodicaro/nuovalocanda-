@@ -16,6 +16,8 @@ import { RoomSlide, slideGridClass } from "@/components/rooms/RoomSlide";
 import { cn } from "@/lib/cn";
 import { FormIsland, RoomsIsland } from "./Islands";
 import { MosaicMap } from "./MosaicMap";
+import { ways } from "@/content/transport";
+import { chipLabel, LineChip, WaySummary } from "@/components/venice/transport-ui";
 
 type Props = { lang: Locale; dict: Dictionary };
 
@@ -163,22 +165,24 @@ export function VeniceSection({ lang, dict }: Props) {
           <MosaicMap t={t} />
         </Reveal>
 
-        {/* Fonti: ACTV (https://actv.avmspa.it/it/content/tram-0) per le linee
-            T1 e T2; orario Trenitalia per il tempo Mestre – Santa Lucia.
-            Tempi indicativi. Fermate e linee dalla locanda: da confermare. */}
+        {/* Dati, fonti e date di verifica: content/transport.ts. Qui solo il
+            riassunto; orari e ritorno nella pagina Venezia. */}
         <ol className="mt-12 grid gap-px border border-sabbia bg-sabbia md:grid-cols-3">
-          {t.ways.map((way, i) => (
-            <Reveal as="li" key={way.name} delay={i * 110} className="bg-crema p-[clamp(1.5rem,3vw,2.4rem)]">
+          {ways.map((way, i) => (
+            <Reveal as="li" key={way.mode} delay={i * 110} className="bg-crema p-[clamp(1.5rem,3vw,2.4rem)]">
               <p className="font-serif text-[1.05rem] text-mattone" aria-hidden="true">
-                {two(i + 1)} / {two(t.ways.length)}
+                {two(i + 1)} / {two(ways.length)}
               </p>
-              <h3 className="mt-5 font-serif text-[2rem] leading-none">{way.name}</h3>
-              <p className="mt-4 text-legno">{way.text}</p>
-              {way.tbc ? (
-                <p className="mt-4 text-[0.92rem]">
-                  <Tbc label={way.tbc} tbc={dict.common.tbc} />
-                </p>
+              <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
+                <h3 className="font-serif text-[2rem] leading-none">{t.ways[way.mode].name}</h3>
+                <LineChip way={way} label={chipLabel(way, t.map)} />
+              </div>
+              {way.mode === "bus" ? (
+                <p className="mt-3 text-[0.92rem] font-semibold text-mattone">{t.transport.simplest}</p>
               ) : null}
+              <p className="mt-4 text-legno">
+                <WaySummary way={way} dict={dict} />
+              </p>
             </Reveal>
           ))}
         </ol>

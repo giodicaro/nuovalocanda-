@@ -116,29 +116,64 @@ export const it = {
     title1: "Tre modi",
     title2: "per passare il ponte.",
     intro:
-      "Marghera è sulla terraferma, di fronte a Venezia. Le due sponde sono unite dal Ponte della Libertà, che si attraversa in tram, in autobus o in treno.",
-    ways: [
-      {
-        name: "Tram",
-        text: "La rete ACTV ha due linee di tram. La T2 collega Marghera a Mestre Centro. La T1 collega Favaro Veneto a Venezia, Piazzale Roma.",
-        tbc: "Fermata più vicina e tempi",
-      },
-      {
+      "Marghera è sulla terraferma, di fronte a Venezia. Il Ponte della Libertà si attraversa in autobus, in tram o in treno. Il modo più semplice è l'autobus.",
+    /** Le parole di ogni mezzo. I dati (fermate, orari) sono in content/transport.ts. */
+    ways: {
+      bus: {
         name: "Autobus",
-        text: "Gli autobus urbani ACTV collegano la terraferma a Piazzale Roma, il capolinea di Venezia.",
-        tbc: "Linea e fermata più vicina",
+        lead: "Va diretto a Piazzale Roma, senza cambi, dalla mattina presto fino a dopo mezzanotte.",
+        line: "Linea {lines}, direzione {direction}",
       },
-      {
+      tram: {
+        name: "Tram",
+        lead: "La T2 porta a Mestre centro. Per Venezia si cambia con la T1: ci vuole più tempo che in autobus.",
+        line: "T2 direzione {direction}, poi T1 per Venezia",
+      },
+      train: {
         name: "Treno",
-        text: "La stazione di Venezia Mestre è a circa 10–12 minuti a piedi dalla locanda. Da lì i treni regionali arrivano a Venezia Santa Lucia in circa 10–15 minuti (tempo indicativo).",
-        tbc: "",
+        lead: "Dalla stazione di Venezia Mestre i treni regionali arrivano a Santa Lucia, sul Canal Grande.",
+        line: "Treni regionali, direzione {direction}",
       },
-    ],
+    },
+    transport: {
+      or: "o",
+      simplest: "Il modo più semplice",
+      stop: "Fermata",
+      station: "Stazione",
+      walk: "{n} min a piedi",
+      line: "Linea",
+      ride: "Fino a {place}",
+      rideValue: "{n} min",
+      rideChange: "{n} min a bordo, più l'attesa del cambio a {at}",
+      every: "Passa",
+      everyValue: "ogni {n} min",
+      bands: {
+        day: "di giorno",
+        evening: "la sera",
+        weekdayMorning: "feriali e sabato fino alle 10",
+        weekdayAfternoon: "poi",
+        holiday: "festivi",
+      },
+      eveningBusNote: "solo la 6",
+      toVenice: "Verso Venezia",
+      firstLast: "prima {first}, ultima {last}",
+      holidayLast: "festivi {last}",
+      back: "Ritorno",
+      backValue: "da {from} a {stop} ({walk})",
+      night: "Di notte la {line}, ogni {n} min dalle {from} alle {to}",
+      official: "Orario ufficiale",
+      card: "{stopLabel} {stop}, {walk} · {line} · {ride} a {place}",
+      cardLineBus: "linea {lines}",
+      cardLineTram: "T2 e cambio con la T1",
+      cardLineTrain: "treno",
+      cardRideChange: "{n} min più il cambio",
+      cardMore: "Orari e ritorno",
+    },
     placesTitle: "Dove scendere, che cosa vedere",
     places: [
       {
         name: "Piazzale Roma",
-        text: "Dove arrivano tram e autobus. Da qui Venezia si gira a piedi o in vaporetto.",
+        text: "Dove arrivano autobus e tram. Da qui Venezia si gira a piedi o in vaporetto.",
       },
       {
         name: "Santa Lucia",
@@ -152,14 +187,24 @@ export const it = {
       },
     ],
     cta: "La guida per arrivare a Venezia",
-    mapCaption: "Mappa illustrata, non in scala",
-    mapAlt:
-      "Mappa a tessere di mosaico: la locanda a Marghera sulla terraferma, il Ponte della Libertà sulla laguna e Venezia",
-    mapLocanda: "La locanda",
-    mapMestre: "Mestre",
-    mapBridge: "Ponte della Libertà",
-    mapVenice: "Venezia",
-    mapLagoon: "Laguna",
+    map: {
+      caption: "Schema semplificato, non in scala",
+      alt: "Schema del percorso dalla locanda a Venezia. Autobus {busLines}: fermata {busStop}, a {busWalk} minuti a piedi, fino a Piazzale Roma in {busRide} minuti. Tram T2: fermata {tramStop}, a {tramWalk} minuti a piedi, cambio con la T1 a Mestre Centro, fino a Piazzale Roma. Treno: stazione di {trainStop}, a {trainWalk} minuti a piedi, fino a Santa Lucia in {trainRide} minuti.",
+      srNote: "Orari, frequenze e ritorno di ogni mezzo sono nell'elenco della pagina.",
+      inn: "La locanda",
+      mestre: "Mestre",
+      marghera: "Marghera",
+      venice: "Venezia",
+      lagoon: "Laguna",
+      bridge: "Ponte della Libertà",
+      walk: "a piedi",
+      min: "{n} min",
+      change: "cambio T1",
+      bus: "Bus",
+      train: "Treno",
+      tram: "Tram",
+      openRoute: "Apri il percorso in Google Maps",
+    },
   },
 
   direct: {
@@ -266,9 +311,15 @@ export const it = {
     intro:
       "Dormire a Marghera vuol dire avere Venezia a portata di mano e tornare, la sera, sulla terraferma. Qui trovate come arrivarci e che cosa sapere prima di partire.",
     waysTitle: "Come arrivare",
-    waysNote:
-      "Linee, fermate e tempi dalla locanda sono da confermare. Per orari e tariffe aggiornati consultate i siti ufficiali.",
-    officialActv: "Orari e tariffe ACTV",
+    ticketsTitle: "Biglietti",
+    tickets: [
+      "Autobus e tram: biglietto ACTV da 75 minuti, {busTram}. Si compra nell'app {app} o nelle rivendite autorizzate. Sul tram non si compra a bordo.",
+      "Convalidate il biglietto quando salite. Quello dell'app si attiva 3 minuti prima di salire.",
+      "Treno da Mestre a Santa Lucia: {train}. Il Mestre Daily Pass ({daily}, solo nell'app) vale 24 ore su autobus, tram e treni regionali fino a Santa Lucia.",
+    ],
+    verified: "Orari verificati a novembre 2026 sui dati ufficiali ACTV e RFI. Cambiano con le stagioni: prima di partire controllate gli orari ufficiali.",
+    officialActv: "Orari delle linee ACTV",
+    officialFares: "Tariffe ACTV",
     officialTrenitalia: "Orari dei treni Trenitalia",
     tipsTitle: "Consigli per la giornata",
     tips: [

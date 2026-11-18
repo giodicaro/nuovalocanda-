@@ -12,10 +12,10 @@ export function MosaicMap({ t }: { t: Dictionary["venice"] }) {
   const height = ROWS * CELL;
 
   const legend: { label: string; swatch: string; round?: boolean }[] = [
-    { label: t.mapLocanda, swatch: "var(--color-terracotta)", round: true },
-    { label: t.mapBridge, swatch: "var(--color-legno)" },
-    { label: t.mapVenice, swatch: "var(--color-mattone)" },
-    { label: t.mapLagoon, swatch: "#a7c6b3" },
+    { label: t.map.inn, swatch: "var(--color-terracotta)", round: true },
+    { label: t.map.bridge, swatch: "var(--color-legno)" },
+    { label: t.map.venice, swatch: "var(--color-mattone)" },
+    { label: t.map.lagoon, swatch: "#a7c6b3" },
   ];
 
   return (
@@ -24,7 +24,7 @@ export function MosaicMap({ t }: { t: Dictionary["venice"] }) {
         <svg
           viewBox={`0 0 ${width} ${height}`}
           role="img"
-          aria-label={t.mapAlt}
+          aria-label={t.map.caption}
           className="mosaico block h-auto w-full"
         >
           {/* Disegno semplice: è ciò che si vede prima delle tessere e senza JavaScript. */}
@@ -79,7 +79,7 @@ export function MosaicMap({ t }: { t: Dictionary["venice"] }) {
             </li>
           ))}
         </ul>
-        <span className="text-[0.72rem] text-legno italic">{t.mapCaption}</span>
+        <span className="text-[0.72rem] text-legno italic">{t.map.caption}</span>
       </figcaption>
     </figure>
   );

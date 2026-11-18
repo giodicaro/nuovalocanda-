@@ -106,11 +106,16 @@ export type Way = {
   /** Prima e ultima corsa verso Venezia. */
   first: Fact<string>;
   last: Fact<string>;
+  /** Ultima corsa nei festivi, se diversa. */
+  lastHoliday?: Fact<string>;
   /** Ritorno: dove si scende e l'ultima corsa utile. */
   back: {
+    /** Dove si risale per tornare. */
+    from: string;
     stop: Stop;
     first: Fact<string>;
     last: Fact<string>;
+    lastHoliday?: Fact<string>;
     /** Linea notturna, se esiste. */
     night: { line: string; from: Fact<string>; to: Fact<string>; every: Fact<number> } | null;
   };
@@ -143,6 +148,7 @@ export const ways: Way[] = [
     first: { value: "04:18", source: "gtfs" },
     last: { value: "00:07", source: "gtfs" },
     back: {
+      from: "Piazzale Roma",
       // GTFS e PDF linea 6: da VENEZIA A3 la prima fermata a Marghera è
       // Durando Bellinato (codice 333), 9 minuti. Prima 05:55, ultima 00:40.
       // Google Maps: 4–5 minuti a piedi (300–350 m), letto il 18/11/2026.
@@ -181,10 +187,13 @@ export const ways: Way[] = [
     ],
     first: { value: "07:05", source: "gtfs" },
     last: { value: "22:07", source: "gtfs" },
+    lastHoliday: { value: "22:25", source: "lineT2" },
     back: {
+      from: "Mestre Centro",
       stop: { name: "Piazzale Giovannacci", walkMinutes: { value: 5, source: "googleWalk" } },
       first: { value: "06:25", source: "gtfs" },
       last: { value: "21:25", source: "gtfs" },
+      lastHoliday: { value: "21:45", source: "lineT2" },
       night: null,
     },
     officialUrl: sources.lineT2.url,
@@ -208,6 +217,7 @@ export const ways: Way[] = [
     first: { value: "05:28", source: "rfiSantaLucia" },
     last: { value: "23:48", source: "rfiSantaLucia" },
     back: {
+      from: "Santa Lucia",
       stop: { name: "Venezia Mestre", walkMinutes: { value: 12, source: "googleWalk" } },
       first: { value: "05:01", source: "rfiSantaLucia" },
       last: { value: "23:09", source: "rfiSantaLucia" },

@@ -3,25 +3,20 @@ import { href } from "@/content/routes";
 import type { Locale } from "@/content/site";
 import { MosaicMap } from "@/components/home/MosaicMap";
 import { PageIntro } from "@/components/ui/PageIntro";
-import { ButtonLink, Label, Reveal, Scallop, Tbc } from "@/components/ui/primitives";
+import { ButtonLink, Label, Reveal, Scallop } from "@/components/ui/primitives";
+import { ticketLines, WayDetails } from "@/components/venice/transport-ui";
+import { sources, ways } from "@/content/transport";
 
 const two = (n: number) => String(n).padStart(2, "0");
 
 /**
- * Fonti ufficiali (controllate il 15/11/2026):
- * - Tram: ACTV, https://actv.avmspa.it/it/content/tram-0
- *   "linea T1 Venezia (Piazzale Roma) – Favaro Veneto" e
- *   "linea T2 Mestre Centro – Marghera".
- * - Treno: il tempo Venezia Mestre – Venezia Santa Lucia (circa 10–15
- *   minuti) è indicativo e va controllato su https://www.trenitalia.com
- * - Contributo di accesso: le regole cambiano ogni anno. Portale ufficiale
- *   https://cda.ve.it — nel 2026 le notizie di stampa riportano date tra
- *   aprile e luglio. DA VERIFICARE sul portale prima della pubblicazione.
- * Linee, fermate e tempi dalla locanda: DA CONFERMARE CON IL TITOLARE
- * (l'indirizzo esatto non è ancora noto).
+ * Trasporti: dati, fonti e date di verifica in content/transport.ts.
+ * Contributo di accesso: le regole cambiano ogni anno. Portale ufficiale
+ * https://cda.ve.it — DA VERIFICARE sul portale prima della pubblicazione.
  */
 const links = {
-  actv: "https://actv.avmspa.it",
+  actv: sources.urbanLines.url,
+  fares: sources.actvFares.url,
   trenitalia: "https://www.trenitalia.com",
   fee: "https://cda.ve.it",
 };
@@ -66,31 +61,32 @@ export function VenicePage({ lang }: { lang: Locale }) {
 
           <div>
             <ol className="border-t border-inchiostro">
-              {v.ways.map((way, i) => (
+              {ways.map((way, i) => (
                 <Reveal
                   as="li"
-                  key={way.name}
+                  key={way.mode}
                   delay={i * 90}
                   className="grid gap-x-8 gap-y-2 border-b border-sabbia py-7 sm:grid-cols-[4rem_minmax(0,1fr)]"
                 >
                   <p className="font-serif text-[1.05rem] text-mattone" aria-hidden="true">
                     {two(i + 1)}
                   </p>
-                  <div>
-                    <h3 className="font-serif text-[2rem] leading-none">{way.name}</h3>
-                    <p className="mt-3 max-w-[52ch] text-legno">{way.text}</p>
-                    {way.tbc ? (
-                      <p className="mt-3 text-[0.92rem]">
-                        <Tbc label={way.tbc} tbc={dict.common.tbc} />
-                      </p>
-                    ) : null}
-                  </div>
+                  <WayDetails way={way} dict={dict} />
                 </Reveal>
               ))}
             </ol>
-            <Reveal className="mt-6">
-              <p className="max-w-[56ch] text-[0.95rem] text-legno">{t.waysNote}</p>
+            <Reveal className="mt-8">
+              <h3 className="font-serif text-[1.6rem] leading-tight">{t.ticketsTitle}</h3>
+              <ul className="mt-3 max-w-[60ch] space-y-2 text-legno">
+                {ticketLines(dict).map((line, i) => (
+                  <li key={i}>{line}</li>
+                ))}
+              </ul>
+              <p className="mt-4 max-w-[60ch] text-[0.95rem] text-legno">{t.verified}</p>
               <p className="mt-2 flex flex-wrap gap-x-8">
+                <External href={links.fares} note={external}>
+                  {t.officialFares}
+                </External>
                 <External href={links.actv} note={external}>
                   {t.officialActv}
                 </External>

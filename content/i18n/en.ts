@@ -115,28 +115,62 @@ export const en: Dictionary = {
     title2: "to cross the bridge.",
     intro:
       "Marghera is on the mainland, facing Venice. The two shores are joined by the Ponte della Libertà, which you cross by tram, bus or train.",
-    ways: [
-      {
-        name: "Tram",
-        text: "The ACTV network has two tram lines. T2 links Marghera to Mestre Centro. T1 links Favaro Veneto to Venice, Piazzale Roma.",
-        tbc: "Nearest stop and travel time",
-      },
-      {
+    ways: {
+      bus: {
         name: "Bus",
-        text: "ACTV city buses link the mainland to Piazzale Roma, the Venice terminus.",
-        tbc: "Line and nearest stop",
+        lead: "Goes straight to Piazzale Roma, no changes, from early morning until after midnight.",
+        line: "Line {lines}, heading {direction}",
       },
-      {
+      tram: {
+        name: "Tram",
+        lead: "The T2 takes you to central Mestre. For Venice you change to the T1, so it takes longer than the bus.",
+        line: "T2 heading {direction}, then T1 to Venice",
+      },
+      train: {
         name: "Train",
-        text: "Venezia Mestre station is about a 10–12 minute walk from the inn. From there, regional trains reach Venezia Santa Lucia in about 10–15 minutes (approximate time).",
-        tbc: "",
+        lead: "From Venezia Mestre station, regional trains run to Santa Lucia, right on the Grand Canal.",
+        line: "Regional trains heading {direction}",
       },
-    ],
+    },
+    transport: {
+      or: "or",
+      simplest: "The easiest way",
+      stop: "Stop",
+      station: "Station",
+      walk: "{n} min walk",
+      line: "Line",
+      ride: "To {place}",
+      rideValue: "{n} min",
+      rideChange: "{n} min on board, plus the wait to change at {at}",
+      every: "Every",
+      everyValue: "{n} min",
+      bands: {
+        day: "daytime",
+        evening: "evening",
+        weekdayMorning: "Mon–Sat until 10am",
+        weekdayAfternoon: "then",
+        holiday: "Sundays and holidays",
+      },
+      eveningBusNote: "line 6 only",
+      toVenice: "To Venice",
+      firstLast: "first {first}, last {last}",
+      holidayLast: "Sundays and holidays {last}",
+      back: "Coming back",
+      backValue: "from {from} to {stop} ({walk})",
+      night: "At night the {line}, every {n} min from {from} to {to}",
+      official: "Official timetable",
+      card: "{stopLabel} {stop}, {walk} · {line} · {ride} to {place}",
+      cardLineBus: "line {lines}",
+      cardLineTram: "T2, then change to the T1",
+      cardLineTrain: "train",
+      cardRideChange: "{n} min plus the change",
+      cardMore: "Times and the way back",
+    },
     placesTitle: "Where to get off, what to see",
     places: [
       {
         name: "Piazzale Roma",
-        text: "Where trams and buses arrive. From here you explore Venice on foot or by vaporetto.",
+        text: "Where buses and trams arrive. From here you explore Venice on foot or by vaporetto.",
       },
       {
         name: "Santa Lucia",
@@ -150,14 +184,24 @@ export const en: Dictionary = {
       },
     ],
     cta: "The guide to getting to Venice",
-    mapCaption: "Illustrated map, not to scale",
-    mapAlt:
-      "Mosaic-tile map: the inn in Marghera on the mainland, the Ponte della Libertà over the lagoon, and Venice",
-    mapLocanda: "The inn",
-    mapMestre: "Mestre",
-    mapBridge: "Ponte della Libertà",
-    mapVenice: "Venice",
-    mapLagoon: "Lagoon",
+    map: {
+      caption: "Simplified diagram, not to scale",
+      alt: "Diagram of the route from the inn to Venice. Bus {busLines}: {busStop} stop, a {busWalk} minute walk, to Piazzale Roma in {busRide} minutes. Tram T2: {tramStop} stop, a {tramWalk} minute walk, change to the T1 at Mestre Centro, to Piazzale Roma. Train: {trainStop} station, a {trainWalk} minute walk, to Santa Lucia in {trainRide} minutes.",
+      srNote: "Times, frequency and the way back for each option are in the list on this page.",
+      inn: "The inn",
+      mestre: "Mestre",
+      marghera: "Marghera",
+      venice: "Venice",
+      lagoon: "Lagoon",
+      bridge: "Ponte della Libertà",
+      walk: "on foot",
+      min: "{n} min",
+      change: "change to T1",
+      bus: "Bus",
+      train: "Train",
+      tram: "Tram",
+      openRoute: "Open the route in Google Maps",
+    },
   },
 
   direct: {
@@ -264,9 +308,15 @@ export const en: Dictionary = {
     intro:
       "Sleeping in Marghera means having Venice close at hand and coming back, in the evening, to the mainland. Here is how to get there and what to know before you set off.",
     waysTitle: "How to get there",
-    waysNote:
-      "Lines, stops and travel times from the inn are to be confirmed. For current timetables and fares, check the official sites.",
-    officialActv: "ACTV timetables and fares",
+    ticketsTitle: "Tickets",
+    tickets: [
+      "Bus and tram: a 75-minute ACTV ticket, {busTram}. Buy it in the {app} app or at authorised sellers. You can't buy tickets on the tram.",
+      "Validate your ticket when you get on. App tickets are activated 3 minutes before boarding.",
+      "Train from Mestre to Santa Lucia: {train}. The Mestre Daily Pass ({daily}, app only) covers 24 hours on buses, trams and regional trains as far as Santa Lucia.",
+    ],
+    verified: "Times checked in November 2026 against official ACTV and RFI data. They change with the seasons: check the official timetables before you set off.",
+    officialActv: "ACTV line timetables",
+    officialFares: "ACTV fares",
     officialTrenitalia: "Trenitalia train times",
     tipsTitle: "Tips for the day",
     tips: [
