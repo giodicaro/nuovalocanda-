@@ -159,7 +159,7 @@ export const en: Dictionary = {
       backValue: "from {from} to {stop} ({walk})",
       night: "At night the {line}, every {n} min from {from} to {to}",
       official: "Official timetable",
-      card: "{stopLabel} {stop}, {walk} · {line} · {ride} to {place}",
+      card: "{stopLabel} {stop}, {walk} · {line} · {place} in {ride}",
       cardLineBus: "line {lines}",
       cardLineTram: "T2, then change to the T1",
       cardLineTrain: "train",

@@ -162,7 +162,7 @@ export const it = {
       backValue: "da {from} a {stop} ({walk})",
       night: "Di notte la {line}, ogni {n} min dalle {from} alle {to}",
       official: "Orario ufficiale",
-      card: "{stopLabel} {stop}, {walk} · {line} · {ride} a {place}",
+      card: "{stopLabel} {stop}, {walk} · {line} · {place} in {ride}",
       cardLineBus: "linea {lines}",
       cardLineTram: "T2 e cambio con la T1",
       cardLineTrain: "treno",

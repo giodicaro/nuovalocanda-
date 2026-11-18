@@ -198,13 +198,13 @@ export function RouteMap({ dict }: { dict: Dictionary }) {
         </text>
       </svg>
 
-      {/* Verticale, sotto 1024 px. Testo minimo 14 nel disegno: almeno 12 px a 375 px. */}
+      {/* Verticale, sotto 1024 px. Testo minimo 15 nel disegno: almeno 12 px anche a 360 px. */}
       <svg
         viewBox="0 0 360 760"
         role="img"
         aria-label={alt}
         className="mx-auto block h-auto w-full max-w-[30rem] font-sans lg:hidden"
-        fontSize={14}
+        fontSize={15}
       >
         <rect width="360" height="760" fill="var(--color-laguna)" />
         <path d="M0 0 H360 V250 C330 300 300 340 255 365 C190 400 110 410 0 430 Z" fill="var(--color-crema)" />
@@ -246,7 +246,7 @@ export function RouteMap({ dict }: { dict: Dictionary }) {
         {/* Autobus */}
         <path d="M175 240 H215 C240 240 248 258 248 285 L247 382 L277 612 C265 640 240 662 222 680" {...line("bus", 7)} />
 
-        <g fontSize={14}>
+        <g fontSize={15}>
           <Chip x={330} y={455} w={58} mode="train">{chipLabel(train, m)}</Chip>
           <Chip x={185} y={430} w={96} mode="bus">{chipLabel(bus, m)}</Chip>
           <Chip x={178} y={470} w={110} mode="tram">{chipLabel(tram, m)}</Chip>
