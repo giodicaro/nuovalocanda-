@@ -7,7 +7,7 @@ La tavola di stile `docs/tavola-di-stile.html` mostra la prima proposta, prima d
 
 **"La locanda arancione alle porte di Venezia."**
 Un posto semplice e accogliente, dove si dorme bene spendendo il giusto e la mattina si parte per Venezia in tram, autobus o treno.
-Il sito usa come motivi grafici le cose vere della casa: l'intonaco terracotta, la tenda crema smerlata, l'insegna verticale "ALLOGGI", il balconcino bianco, la mappa di Venezia a tessere e il mosaico con il logo NLB.
+Il sito usa come motivi grafici le cose vere della casa: l'intonaco terracotta, la tenda crema smerlata, l'insegna verticale "ALLOGGI", il balconcino bianco, la mappa di Venezia della hall (ridisegnata come mappa-itinerario) e il mosaico con il logo NLB.
 
 ## 2. Che cosa ho imparato dal sito di riferimento
 
@@ -66,7 +66,7 @@ Coppia diversa da Cormorant Garamond + Raleway, come richiesto.
 
 1. **Bordo smerlato della tenda**: divisore tra le sezioni e bordo inferiore della cornice dell'hero (SVG).
 2. **Insegna verticale**: lettere impilate in caselle. "ALLOGGI" nell'hero, poi "VENEZIA", "CAMERE".
-3. **Tessere di mosaico**: la mappa di Venezia della hall ridisegnata da zero in SVG a quadretti. È anche il segnaposto delle foto mancanti.
+3. **Mappa-itinerario** (dal 18/11/2026, al posto della mappa a tessere): disegno originale in SVG, a metà tra piantina e schema di linea. Locanda in terracotta con bordo inchiostro, fermate con i minuti a piedi, tre linee con il nome scritto (autobus `verde`, tram `canale` #2B5D86, treno `inchiostro` tratteggiato), arrivi a Piazzale Roma e Santa Lucia. Laguna `laguna` #D3E3DF. Testo minimo 12 px a schermo; orizzontale da 1024 px, verticale sotto. Le foto mancanti usano un motivo a scacchi in CSS (`PhotoMissing`), non le tessere.
 4. **Monogramma NLB**: logo testuale in Fraunces. Lo ridisegno in forma tipografica; il file originale del logo va chiesto al titolare.
 5. **Cornici**: ogni foto sta in una cornice con bordo sottile e didascalia piccola, come una stampa appesa. Mai a tutto schermo.
 
@@ -88,7 +88,7 @@ Tutto è fatto con CSS e SVG, senza librerie. Con `prefers-reduced-motion` le an
 - **Lenis** per lo scroll morbido: solo su desktop con mouse, spento con `prefers-reduced-motion`.
 - **Three.js è stato rimosso** (con `@react-three/fiber` e `@react-three/drei`). L'effetto di carattere è il tram in SVG, che racconta il punto di forza della locanda e pesa pochissimo. Un effetto WebGL avrebbe abbassato il punteggio Lighthouse mobile.
 
-**Nel resto del sito**: comparse dal basso con dissolvenza, foto scoperte da una maschera, header trasparente che diventa crema, menu mobile a tutto schermo, tessere della mappa che compaiono a gruppi. Il contenuto è sempre nell'HTML: senza JavaScript resta tutto visibile.
+**Nel resto del sito**: comparse dal basso con dissolvenza, foto scoperte da una maschera, header trasparente che diventa crema, menu mobile a tutto schermo. Sulla mappa pulsa solo l'anello della locanda (si ferma con il movimento ridotto e con il pulsante delle animazioni). Il contenuto è sempre nell'HTML: senza JavaScript resta tutto visibile.
 
 ## 7. Sitemap
 
@@ -146,7 +146,7 @@ Usate: 14. Scartate o non pubblicate: 3 (02, 08, 10).
 | Hero | 04 in cornice con bordo smerlato |
 | Manifesto | 06 + ritaglio della 09 |
 | Le sistemazioni (slider) | 16, 12, 14 + segnaposto |
-| Venezia a portata di tram | Nessuna foto: mappa SVG a tessere |
+| Venezia: tre modi per passare il ponte | Nessuna foto: mappa-itinerario SVG |
 | Perché prenotare da qui | Nessuna foto: tipografia |
 | La casa | 07, ritaglio della 05, ritaglio della 03 |
 | Dicono di noi | Nessuna foto |

@@ -8,7 +8,7 @@ Brief completo: messaggio del committente del 15/11/2026. Direzione: `docs/direz
 - [x] **Fase 1 — studio e direzione visiva.** Approvata il 15/11/2026 con due modifiche: palette più accesa, hero animata.
 - [x] **Fase 2 — fondamenta.** Git, token, font, due lingue, layout, header, footer, scroll morbido.
 - [x] **Fase 3 — pagine e contenuti.** Home, camere, Venezia, prenota, privacy, cookie, in italiano e in inglese.
-- [x] **Fase 4 — interazioni e rifinitura.** Slider con filtro, mappa a mosaico, modulo con route API, WhatsApp, SEO, dati strutturati.
+- [x] **Fase 4 — interazioni e rifinitura.** Slider con filtro, mappa (oggi mappa-itinerario, vedi sotto), modulo con route API, WhatsApp, SEO, dati strutturati.
 - [x] **Fase 5 — verifica.** tsc, lint, build, quattro larghezze, modulo, tastiera, Lighthouse, revisione indipendente.
 
 ## Come riprendere il lavoro
@@ -31,6 +31,8 @@ Dove stanno le cose:
 | Foto, testi alternativi, misura massima a schermo | `content/photos.ts` |
 | Testi in italiano e in inglese | `content/i18n/it.ts`, `content/i18n/en.ts` |
 | Percorsi delle pagine nelle due lingue | `content/routes.ts` |
+| Trasporti per Venezia: fermate, linee, orari, prezzi, con fonti e date | `content/transport.ts` (ricerca: `research_notes/Dati Nuova Locanda Belvedere/trasporti.md`) |
+| Mappa-itinerario e voci dei mezzi | `components/venice/RouteMap.tsx`, `components/venice/transport-ui.tsx` |
 | Colori, font, animazioni | `app/globals.css`, `app/fonts.ts` |
 | Modulo: validazione, invio, route | `lib/request.ts`, `lib/booking.ts`, `app/api/richiesta/route.ts` |
 | Variabili d'ambiente | `.env.example` |
@@ -44,8 +46,9 @@ Per confermare un dato: in `content/site.ts` si sostituisce `null` con il valore
 - **Font.** Fraunces (peso 400, tondo e corsivo) e Figtree, serviti dal sito con `next/font`. Fraunces senza assi variabili: 41 KB invece di 270 KB.
 - **Animazioni.** Hero in solo CSS e SVG. Framer Motion solo nello slider, caricato dopo. GSAP e Three.js rimossi.
 - **Comparsa allo scroll.** Un solo componente client (`ClientEffects`) con IntersectionObserver. Il contenuto è nell'HTML e resta visibile senza JavaScript.
-- **Prestazioni.** Sezioni con `content-visibility: auto`. Slider e modulo della home si attivano quando si avvicinano allo schermo (`components/home/Islands.tsx`), con una versione statica scritta dal server. La mappa a mosaico disegna le tessere nel browser. I link non precaricano le altre pagine. L'orologio di Venezia gira solo quando è visibile e ha misure fisse.
-- **Un file "use client" non può esportare valori a un componente server.** Le misure della mappa stanno in `components/home/mosaic-grid.ts` per questo motivo.
+- **Prestazioni.** Sezioni con `content-visibility: auto`. Slider e modulo della home si attivano quando si avvicinano allo schermo (`components/home/Islands.tsx`), con una versione statica scritta dal server. La mappa-itinerario è SVG scritto dal server, senza JavaScript. I link non precaricano le altre pagine. L'orologio di Venezia gira solo quando è visibile e ha misure fisse.
+- **Un file "use client" non può esportare valori a un componente server.** Per questo i dati condivisi stanno in file senza "use client" (per esempio `content/transport.ts`).
+- **Trasporti (18/11/2026, branch `feature/trasporti-mappa`).** Dati da fonti ufficiali in `content/transport.ts`: GTFS e PDF ACTV, quadro orario RFI, tariffe AVM e Trenitalia, minuti a piedi da Google Maps. Il modo consigliato è l'autobus 6 o 6L da Rizzardi Carrer (13 minuti a Piazzale Roma). La mappa a mosaico è stata sostituita da una mappa-itinerario SVG. Dettagli e verifiche: `docs/progress-trasporti.md`.
 - **Stili di base nel livello `base`.** Senza `@layer base` le regole su `h1`, `h2`, `h3` vincono sulle utilità Tailwind.
 - **Titolo dell'hero.** "Una stanza a Marghera. Venezia, appena oltre il ponte." Non dice "a un tram da Venezia": secondo ACTV la linea T2 collega Marghera a Mestre Centro e la T1 collega Mestre a Venezia, quindi il viaggio in tram può richiedere un cambio.
 - **Foto.** 14 usate, 3 non pubblicate: la 02 è un doppione, la 08 e la 10 sono riproduzioni di opere di terzi.
