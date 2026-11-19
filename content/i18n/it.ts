@@ -8,7 +8,7 @@ export const it = {
     home: {
       title: "Nuova Locanda Belvedere — Dormire a Marghera, vicino a Venezia",
       description:
-        "Locanda con otto camere a Marghera, sulla terraferma di Venezia. Camere singole, doppie, triple e quadruple. Venezia si raggiunge in tram, autobus o treno. Richiesta diretta, senza intermediari.",
+        "Locanda con otto camere a Marghera, sulla terraferma di Venezia. Venezia si raggiunge in tram, autobus o treno. Richiesta diretta, senza intermediari.",
     },
     rooms: {
       title: "Camere — Nuova Locanda Belvedere, Marghera Venezia",

@@ -73,6 +73,9 @@ export const contacts: {
 export const stay: {
   checkIn: Localized | null;
   checkOut: Localized | null;
+  /** Stessi orari in formato HH:MM, per i dati strutturati. */
+  checkInTime: string | null;
+  checkOutTime: string | null;
   receptionHours: string | null;
   breakfast: Localized | null;
   parking: Localized | null;
@@ -80,6 +83,8 @@ export const stay: {
 } = {
   checkIn: { it: "dalle 14:00", en: "from 2:00 pm" },
   checkOut: { it: "entro le 10:00", en: "by 10:00 am" },
+  checkInTime: "14:00",
+  checkOutTime: "10:00",
   receptionHours: null,
   breakfast: null,
   parking: {

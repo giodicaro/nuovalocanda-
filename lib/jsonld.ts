@@ -1,6 +1,7 @@
 import { routes } from "@/content/routes";
 import { bathAmenities, roomAmenities } from "@/content/rooms";
-import { contacts, site, type Locale } from "@/content/site";
+import { contacts, site, stay, type Locale } from "@/content/site";
+import { innCoordinates } from "@/content/transport";
 import { getDictionary } from "@/content/i18n";
 
 /**
@@ -27,6 +28,13 @@ export function lodgingJsonLd(lang: Locale) {
       addressRegion: site.province,
       addressCountry: site.country,
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: innCoordinates.lat,
+      longitude: innCoordinates.lon,
+    },
+    ...(stay.checkInTime ? { checkinTime: stay.checkInTime } : {}),
+    ...(stay.checkOutTime ? { checkoutTime: stay.checkOutTime } : {}),
     ...(contacts.phone ? { telephone: contacts.phone } : {}),
     ...(contacts.email ? { email: contacts.email } : {}),
     amenityFeature: [...roomAmenities[lang], ...bathAmenities[lang]].map((name) => ({

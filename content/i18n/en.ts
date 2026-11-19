@@ -4,9 +4,9 @@ import type { Dictionary } from "./it";
 export const en: Dictionary = {
   meta: {
     home: {
-      title: "Nuova Locanda Belvedere — A place to sleep in Marghera, near Venice",
+      title: "Nuova Locanda Belvedere — Rooms in Marghera, near Venice",
       description:
-        "An eight-room inn in Marghera, on the Venice mainland. Single, double, triple and quadruple rooms. Venice is a tram, bus or train ride away. Ask the inn directly, with no middleman.",
+        "An eight-room inn in Marghera, on the Venice mainland. Venice is a tram, bus or train ride away. Ask the inn directly, with no middleman.",
     },
     rooms: {
       title: "Rooms — Nuova Locanda Belvedere, Marghera Venice",
